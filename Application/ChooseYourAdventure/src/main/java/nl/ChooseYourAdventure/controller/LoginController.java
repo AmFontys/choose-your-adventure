@@ -8,7 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/api/login")
 @AllArgsConstructor
 public class LoginController {
+
+    /*@GetMapping
+    public ResponseEntity<GetLoginResponse> getLoginPage(){
+        return
+    }*/
+
 }
