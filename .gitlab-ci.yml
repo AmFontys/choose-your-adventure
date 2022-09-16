@@ -2,8 +2,14 @@ variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
 stages: 
+  - search
   - build
   - test
+
+search:
+  stage: search
+  Script:
+    - cd ../Application/ChooseYourAdventure
 
 build:
   stage: build 
