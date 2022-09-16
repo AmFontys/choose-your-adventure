@@ -8,11 +8,11 @@ stages:
 build:
   stage: build 
   script:
-    - cd ../Application/ChooseYourAdventure 
+    - cd ./Application/ChooseYourAdventure 
     - gradle assemble
 
 test: 
   stage: test 
   script:
-    - cd ../Application/ChooseYourAdventure
+    - cd ./Application/ChooseYourAdventure
     - gradle test
