@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adventure</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <h2>Welcome</h2>
+    <ul>
+        <li v-for="story in stories">{{ story.title }}</li>
+    </ul>
+</div>
+
+<script>
+    const storiesApi ="http://localhost:8080/api/story";
+
+    new Vue({
+       el: "#app",
+        data(){
+           return{
+               stories: []
+           }
+        },
+        created(){
+           fetch(storiesApi)
+               .then(response => {
+                   return response.json();
+               })
+               .then(stories =>{
+                   this.stories = stories;
+               })
+        }
+
+    });
+</script>
+
+
+</body>
+</html>
