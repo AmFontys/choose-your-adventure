@@ -4,20 +4,26 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.w3c.dom.Text;
 
 import javax.validation.constraints.NotNull;
-import java.util.List;
+import java.util.Dictionary;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Story {
+public class StoryBody {
     @NotNull
-    private String id;
+    private int id;
     @NotNull
-    private String title;
+    private String storyId;
+    @NotNull
+    private String bodyTitle;
+    @NotNull
+    private String text;
 
-    private List<StoryBody> storyBodyList;
+    private Dictionary<String, StoryBody> options;
+
 
 }
