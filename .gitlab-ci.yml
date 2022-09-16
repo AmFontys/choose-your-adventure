@@ -7,10 +7,12 @@ stages:
 
 build:
   stage: build 
-  script: 
+  script:
+    - cd ./Application/ChooseYourAdventure 
     - gradle assemble
 
 test: 
   stage: test 
   script:
+    - cd ./Application/ChooseYourAdventure
     - gradle test
