@@ -4,26 +4,31 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.w3c.dom.Text;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import java.util.Dictionary;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class StoryBody {
     @NotNull
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotNull
-    private String storyId;
+    private int storyId;
     @NotNull
     private String bodyTitle;
     @NotNull
     private String text;
 
-    private Dictionary<String, StoryBody> options;
+    private StoryBodyType type;
 
 
 }
