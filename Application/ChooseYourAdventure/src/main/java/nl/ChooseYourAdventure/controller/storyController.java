@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/story")
+@CrossOrigin
 public class storyController {
     @Autowired
     private StoryService storyService;
