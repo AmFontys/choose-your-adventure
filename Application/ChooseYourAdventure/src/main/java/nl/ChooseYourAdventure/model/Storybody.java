@@ -4,11 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -16,19 +14,30 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class StoryBody {
+public class Storybody {
     @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @NotNull
-    private int storyId;
+    @ManyToOne
+    @JoinColumn(name="storyid")
+    private Story story;
+
+    @ManyToOne
+    @JoinColumn(name="storybody_typeid")
+    private StoryBodyType type;
+
     @NotNull
-    private String bodyTitle;
+    @Length(min=7,max=150)
+    private String body_title;
+
     @NotNull
     private String text;
 
-    private StoryBodyType type;
+
 
 
 }
+
