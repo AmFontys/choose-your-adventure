@@ -29,8 +29,3 @@ sonarqube-check:
   only:
     - master # or the name of your main branch
 
-test: 
-  stage: test 
-  script:
-    - cd ./Application/ChooseYourAdventure
-    - gradle test
