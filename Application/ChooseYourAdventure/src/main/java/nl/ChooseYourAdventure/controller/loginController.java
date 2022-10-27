@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class LoginController {
 
-    private userService userService;
-
     private loginService loginService;
 
 
