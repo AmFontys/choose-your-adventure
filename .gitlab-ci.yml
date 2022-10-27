@@ -1,6 +1,26 @@
+variables: 
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+stages: 
+  - build
+  - test
+  - sonarqube
+
+build:
+  stage: build 
+  script:
+    - cd ./Application/ChooseYourAdventure 
+    - gradle assemble
+
+test: 
+  stage: test 
+  script:
+    - cd ./Application/ChooseYourAdventure
+    - gradle test
+
 
 sonarqube-check:
-  stage: test  
+  stage: sonarqube  
   script: 
     - cd ./Application/ChooseYourAdventure
     - gradle sonarqube
