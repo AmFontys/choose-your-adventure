@@ -25,6 +25,8 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test:5.2.1.RELEASE'
 }
 
 test {
@@ -33,7 +35,10 @@ test {
 
 sonarqube {
     properties {
+        property "sonar.sourceEncoding","UTF-8"
         property "sonar.projectKey", "AdventureHub"
         property "sonar.qualitygate.wait", true
+        property "sonar.login","admin"
+        property "sonar.password","admin1"
     }
 }

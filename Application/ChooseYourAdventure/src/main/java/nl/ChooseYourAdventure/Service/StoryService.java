@@ -8,5 +8,7 @@ import java.util.Optional;
 public interface StoryService {
     Story saveStory(Story story);
     List<Story> getAllStories();
+    List<Story> getAllStories(Integer userId);
     Optional<Story> getStory(Integer id);
+
 }

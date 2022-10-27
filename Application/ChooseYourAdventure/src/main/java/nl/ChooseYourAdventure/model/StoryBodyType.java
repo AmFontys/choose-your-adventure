@@ -1,9 +1,25 @@
 package nl.ChooseYourAdventure.model;
 
-public enum StoryBodyType {
-    Initial,
-    Option1A,
-    Option1B,
-    Option2A,
-    Option2B
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Collection;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class StoryBodyType {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int storybody_typeid;
+
+    @NotNull
+    private String typename;
+
 }
