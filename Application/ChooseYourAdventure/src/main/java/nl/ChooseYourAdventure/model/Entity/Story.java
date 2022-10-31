@@ -1,4 +1,4 @@
-package nl.ChooseYourAdventure.model;
+package nl.ChooseYourAdventure.model.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,10 +13,10 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Report {
+public class Story {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int reportid;
+    private int storyid;
 
     @NotNull
     @ManyToOne
@@ -24,16 +24,7 @@ public class Report {
     private User user;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name="storyid")
-    private Story story;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name="report_typeid")
-    private ReportType type;
-
-    @NotNull
-    private String report;
+    private String title;
 
 }

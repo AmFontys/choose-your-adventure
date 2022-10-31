@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public
 class UserDetailsMapper {
 
-    public UserDetails toUserDetails(nl.ChooseYourAdventure.model.User userCredentials) {
+    public UserDetails toUserDetails(nl.ChooseYourAdventure.model.Entity.User userCredentials) {
 
         return User.withUsername(userCredentials.getUsername())
                 .password(userCredentials.getPassword())

@@ -1,4 +1,4 @@
-package nl.ChooseYourAdventure.model;
+package nl.ChooseYourAdventure.model.dta;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,12 +15,7 @@ import javax.validation.constraints.NotNull;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-public class ReportType {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int report_typeid;
-
-    @NotNull
-    private String type;
+public class StoryBodyTypeDta {
+    private int storybody_typeid;
+    private String typename;
 }

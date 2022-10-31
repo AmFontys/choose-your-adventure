@@ -1,33 +1,25 @@
-package nl.ChooseYourAdventure.model;
+package nl.ChooseYourAdventure.model.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
-import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Story {
+public class StoryBodyType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int storyid;
+    private int storybody_typeid;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name="userid")
-    private User user;
-
-    @NotNull
-
-    private String title;
+    private String typename;
 
 }

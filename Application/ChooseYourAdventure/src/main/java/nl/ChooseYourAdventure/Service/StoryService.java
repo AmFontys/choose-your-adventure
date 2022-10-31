@@ -1,6 +1,6 @@
 package nl.ChooseYourAdventure.Service;
 
-import nl.ChooseYourAdventure.model.Story;
+import nl.ChooseYourAdventure.model.Entity.Story;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package nl.ChooseYourAdventure.model;
+package nl.ChooseYourAdventure.model.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -15,27 +14,30 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class User {
+public class Storybody {
+    @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userid;
+    private int id;
 
     @NotNull
-    @Length(min=2,max=100)
-    private String username;
+    @ManyToOne
+    @JoinColumn(name="storyid")
+    private Story story;
+
+    @ManyToOne
+    @JoinColumn(name="storybody_typeid")
+    private StoryBodyType type;
 
     @NotNull
     @Length(min=7,max=150)
-    private String email;
+    private String body_title;
 
     @NotNull
-    @Length(min=7,max=150)
-    private String password;
+    private String text;
 
-    @NotNull
-    private String keyword;
 
-    @NotNull
-    private Boolean ismod;
+
 
 }
+

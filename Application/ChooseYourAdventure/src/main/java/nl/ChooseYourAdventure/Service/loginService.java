@@ -1,9 +1,10 @@
 package nl.ChooseYourAdventure.Service;
 
-import nl.ChooseYourAdventure.model.User;
+import nl.ChooseYourAdventure.model.Entity.User;
+import nl.ChooseYourAdventure.model.dta.UserDta;
 
 public interface loginService {
-    User saveUser(User user);
+    User saveUser(UserDta user);
 
-    User loginUser(String username, String password);
+    UserDta loginUser(String username, String password);
 }
