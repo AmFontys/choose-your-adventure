@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import nl.ChooseYourAdventure.Service.userService;
 import nl.ChooseYourAdventure.model.Entity.User;
 import nl.ChooseYourAdventure.model.dta.UserDta;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,12 +23,12 @@ public class userController {
         return service.getUsers();
     }
 
-    @CrossOrigin(origins =  {"http://localhost:3000/"})
     @PutMapping("")
-    public String updateUser(@RequestBody UserDta account){
+    @ResponseStatus(code = HttpStatus.OK)
+    public void updateUser(@RequestBody UserDta account){
 
         service.updateUser(account);
-        return "updated";
+        //return "updated";
     }
 
     @DeleteMapping("")

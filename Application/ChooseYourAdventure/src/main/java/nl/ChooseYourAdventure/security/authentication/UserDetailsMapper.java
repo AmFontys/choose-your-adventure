@@ -9,7 +9,6 @@ public
 class UserDetailsMapper {
 
     public UserDetails toUserDetails(nl.ChooseYourAdventure.model.Entity.User userCredentials) {
-
         return User.withUsername(userCredentials.getUsername())
                 .password(userCredentials.getPassword())
                 .roles(getRole( userCredentials.getIsmod()))
@@ -17,7 +16,7 @@ class UserDetailsMapper {
     }
 
     String getRole(Boolean isMod){
-        if(isMod) return "ROLE_MOD";
-        else return "ROLE_USER";
+        if(isMod) return "MOD";
+        else return "USER";
     }
 }
