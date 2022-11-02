@@ -2,7 +2,7 @@
     <!-- dev environments -->
     <springProfile name="!prod">
         <include resource="org/springframework/boot/logging/logback/base.xml"/>
-        <logger name="nl.ChooseYourAdventure">
+        <logger name="nl.choose_your_adventure">
             <level value="debug"/>
         </logger>
         <logger name="org.springframework.web.client">
