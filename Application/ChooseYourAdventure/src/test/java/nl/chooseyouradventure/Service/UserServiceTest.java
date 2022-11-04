@@ -1,9 +1,9 @@
-package nl.choose_your_adventure.Service;
+package nl.chooseyouradventure.Service;
 
-import nl.choose_your_adventure.Service.impl.userServiceImp;
-import nl.choose_your_adventure.model.Entity.User;
-import nl.choose_your_adventure.model.dta.UserDta;
-import nl.choose_your_adventure.persistence.UserRepository;
+import nl.chooseyouradventure.Service.impl.UserServiceImp;
+import nl.chooseyouradventure.model.Entity.User;
+import nl.chooseyouradventure.model.dta.UserDta;
+import nl.chooseyouradventure.persistence.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -21,7 +21,7 @@ class UserServiceTest {
     UserRepository userRepository;
 
     @InjectMocks
-    userServiceImp userService;
+    UserServiceImp userService;
 
     private UserDta userDta;
 
@@ -29,7 +29,7 @@ class UserServiceTest {
     @BeforeEach
     public void setup() {
         userRepository = Mockito.mock(UserRepository.class);
-        userService = new userServiceImp(userRepository);
+        userService = new UserServiceImp(userRepository);
 
         userDta = UserDta.builder()
                 .userid(200)
