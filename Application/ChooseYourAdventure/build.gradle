@@ -3,6 +3,7 @@ plugins {
     id "org.sonarqube" version "3.4.0.2513"
     id 'io.spring.dependency-management' version '1.0.13.RELEASE'
     id 'java'
+    id "jacoco"
 }
 
 group 'nl.ChooseYourAdventure'
@@ -30,10 +31,36 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     testImplementation 'org.springframework.security:spring-security-test:5.2.1.RELEASE'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+
 }
 
 test {
     useJUnitPlatform()
+}
+
+jacocoTestReport {
+    dependsOn test
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    "nl/chooseyouradventure/main.class",
+                    "nl/chooseyouradventure/**/*DTO.*",
+                    "**/configuration/*",
+                    "**/model/*",
+                    "nl/chooseyouradventure/configuration/security/*",
+                    "nl/chooseyouradventure/security/authentication/DatabaseUserDetail*",
+
+            ])
+        }))
+    }
+
+    reports {
+        xml.enabled true
+    }
 }
 
 sonarqube {
