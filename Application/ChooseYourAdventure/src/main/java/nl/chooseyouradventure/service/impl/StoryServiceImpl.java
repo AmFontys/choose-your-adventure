@@ -5,6 +5,8 @@ import nl.chooseyouradventure.model.StoryMapper;
 import nl.chooseyouradventure.model.dta.StoryBodyTypeDta;
 import nl.chooseyouradventure.model.dta.StorybodyDta;
 import nl.chooseyouradventure.model.dta.UserDta;
+import nl.chooseyouradventure.model.entity.StoryBodyType;
+import nl.chooseyouradventure.model.entity.Storybody;
 import nl.chooseyouradventure.persistence.StorybodyRepository;
 import nl.chooseyouradventure.persistence.StorybodyTypeRepository;
 import nl.chooseyouradventure.service.StoryService;
@@ -15,6 +17,7 @@ import nl.chooseyouradventure.persistence.StoryRepository;
 import nl.chooseyouradventure.persistence.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,13 +58,19 @@ public class StoryServiceImpl implements StoryService {
 
     @Override
     public List<StoryDta> getAllStories() {
-        return storyMapper.giveDtaStory( storyRepository.findAll());
+        List<StoryDta> allStories= storyMapper.giveDtaStory( storyRepository.findAll());
+        if(allStories.size()>0)
+            return makeStoryUserSecure(allStories);
+        else return null;
     }
 
 
     @Override
     public List<StoryDta> getAllStories(Integer userId) {
-        return storyMapper.giveDtaStory(storyRepository.findAllByUserUserid(userId));
+        List<StoryDta> allStories= storyMapper.giveDtaStory(storyRepository.findAllByUserUserid(userId));
+        if(allStories.size()>0)
+            return makeStoryUserSecure(allStories);
+        else return null;
     }
 
     @Override
@@ -89,23 +98,27 @@ if(id>0) {
     @Override
     public List<StorybodyDta> getStoryBody(Integer storyid) {
         if(storyid>0) {
-            return storybodyRepository.findAllByStoryStoryid(storyid);
+            List<StorybodyDta> dtaList = storyMapper.giveDtaStorybody(storybodyRepository.findAllByStoryStoryid(storyid));
+            if(dtaList.size()>0)
+                return makeStorybodyUserSecure(dtaList);
         }
         return null;
     }
+
+
 
     @Override
     public StorybodyDta saveStoryBody(Optional<StoryDta> story, StorybodyDta storybodyDta) {
         if(storybodyDta==null || story.isEmpty()) return  null;
 
         if(storybodyDta.getType()!=null)
-            storybodyDta.setType(this.getStoryBodyType(storybodyDta.getType().getTypename()));
+            storybodyDta.setType(getStoryBodyType(storybodyDta.getType().getTypename()));
 
         if(story.isPresent() && (storybodyDta.getType() !=null)) {
             storybodyDta.setStory(story.get());
-            if (story != null) {
-                return storyMapper.giveDtaStorybody(storybodyRepository.save(storyMapper.giveEntityStorybody(storybodyDta)));
-            }
+Storybody storybody = StoryMapper.giveEntityStorybody(storybodyDta);
+            return storyMapper.giveDtaStorybody(storybodyRepository.save(storybody));
+
         }
        return  null;
     }
@@ -117,9 +130,38 @@ if(id>0) {
 
     @Override
     public StoryBodyTypeDta getStoryBodyType(String typename) {
-        if(typename.isEmpty() || typename =="" || typename==null)
+        if(typename.equals("") || typename==null)
             return  null;
         else return storyMapper.giveDtaStorybodyType(storybodyTypeRepository.findByTypename(typename));
     }
 
+    @Override
+    public List<StoryDta> getAllStories(String name) {
+        if(name==null || name.equals("")) return null;
+
+        List<StoryDta> allSearchedStories= storyMapper.giveDtaStory(storyRepository.findAllByTitleContaining(name));
+        if(allSearchedStories.size()>0){
+            return makeStoryUserSecure(allSearchedStories);
+        }
+        return  null;
+
+    }
+
+    private List<StoryDta> makeStoryUserSecure(List<StoryDta> list){
+        for (StoryDta story : list){
+            story.getUser().setPassword("secret");
+            story.getUser().setKeyword("secret");
+            story.getUser().setIsmod(null);
+
+        }
+        return list;
+    }
+
+    private List<StorybodyDta> makeStorybodyUserSecure(List<StorybodyDta> dtaList) {
+        for (StorybodyDta storybodyDta: dtaList){
+            storybodyDta.getStory().getUser().setPassword("secret");
+            storybodyDta.getStory().getUser().setKeyword("secret");
+        }
+        return dtaList;
+    }
 }

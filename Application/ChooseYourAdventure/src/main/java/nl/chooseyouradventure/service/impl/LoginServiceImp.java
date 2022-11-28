@@ -1,14 +1,12 @@
 package nl.chooseyouradventure.service.impl;
 
 import lombok.AllArgsConstructor;
-import nl.chooseyouradventure.security.authentication.AccessToken;
-import nl.chooseyouradventure.security.encoding.AccessTokenDecoder;
+import nl.chooseyouradventure.model.AccessToken;
 import nl.chooseyouradventure.security.encoding.AccessTokenEncoder;
 import nl.chooseyouradventure.service.LoginService;
 import nl.chooseyouradventure.model.entity.User;
 import nl.chooseyouradventure.model.dta.UserDta;
 import nl.chooseyouradventure.persistence.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -56,8 +54,8 @@ public class LoginServiceImp implements LoginService {
                             .userid(logedinUser.get().getUserid())
                             .username(logedinUser.get().getUsername())
                             .email(logedinUser.get().getEmail())
-                            .password(logedinUser.get().getPassword())
-                            .keyword(logedinUser.get().getKeyword())
+                            .password("secret")
+                            .keyword("secret")
                             .ismod(logedinUser.get().getIsmod())
                             .accesToken(generateAccesToken(logedinUser))
                             .build();
@@ -68,12 +66,14 @@ public class LoginServiceImp implements LoginService {
     }
 
     private String generateAccesToken(Optional<User> logedinUser) {
+        if(logedinUser.isPresent())
         return accessTokenEncoder.encode(
                 AccessToken.builder()
                         .subject(logedinUser.get().getUsername())
                         .roles(returnRole(logedinUser.get().getIsmod()))
                         .userId(logedinUser.get().getUserid())
         .build());
+        else return "";
     }
 
     private List<String> returnRole(Boolean ismod) {

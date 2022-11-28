@@ -24,4 +24,6 @@ public interface StoryService {
     List<StoryBodyTypeDta> getStoryBodyType();
 
     StoryBodyTypeDta getStoryBodyType(String typename);
+
+    List<StoryDta> getAllStories(String name);
 }

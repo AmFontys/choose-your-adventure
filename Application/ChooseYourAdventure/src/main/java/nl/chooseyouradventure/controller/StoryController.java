@@ -35,6 +35,10 @@ public class StoryController {
     public List<StoryDta> list(){
         return  storyService.getAllStories();
     }
+    @GetMapping("/search")
+    public List<StoryDta> list(@RequestParam("title") String name){
+        return  storyService.getAllStories(name);
+    }
     @IsAuthenticated
     @RolesAllowed({"ROLE_USER", "ROLE_MOD"})
     @GetMapping("/user")

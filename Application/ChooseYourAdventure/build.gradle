@@ -51,7 +51,10 @@ jacocoTestReport {
                     "nl/chooseyouradventure/**/*DTO.*",
                     "**/configuration/*",
                     "**/model/*",
+                    "nl/chooseyouradventure/configuration/**",
                     "nl/chooseyouradventure/configuration/security/*",
+                    "nl/chooseyouradventure/configuration/security/auth/*",
+                    "nl/chooseyouradventure/configuration/security/isauthenticated/*",
                     "nl/chooseyouradventure/security/authentication/DatabaseUserDetail*",
 
             ])

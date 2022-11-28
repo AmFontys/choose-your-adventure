@@ -15,8 +15,8 @@ import java.util.Optional;
 public
 class DatabaseUserDetailsService implements UserDetailsService {
 
-    private final UserRepository userRepository;
-    private final UserDetailsMapper userDetailsMapper;
+    private static UserRepository userRepository;
+    private static UserDetailsMapper userDetailsMapper;
 
 
     @Override
@@ -26,5 +26,6 @@ class DatabaseUserDetailsService implements UserDetailsService {
         return userCredentials.map(userDetailsMapper::toUserDetails).orElse(null);
 
     }
+
 }
 
