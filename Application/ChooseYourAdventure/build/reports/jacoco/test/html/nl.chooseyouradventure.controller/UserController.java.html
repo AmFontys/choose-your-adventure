@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="nl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ChooseYourAdventure</a> &gt; <a href="index.source.html" class="el_package">nl.chooseyouradventure.controller</a> &gt; <span class="el_source">UserController.java</span></div><h1>UserController.java</h1><pre class="source lang-java linenums">package nl.chooseyouradventure.controller;
+
+
+import lombok.AllArgsConstructor;
+import nl.chooseyouradventure.configuration.security.isauthenticated.IsAuthenticated;
+import nl.chooseyouradventure.service.StoryService;
+import nl.chooseyouradventure.service.UserService;
+import nl.chooseyouradventure.model.entity.User;
+import nl.chooseyouradventure.model.dta.UserDta;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.security.RolesAllowed;
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@AllArgsConstructor
+@RequestMapping(&quot;/api/user&quot;)
+@CrossOrigin(origins =  {&quot;http://localhost:3000/&quot;})
+public class UserController {
+
+    UserService service;
+    private StoryService storyService;
+
+    @IsAuthenticated
+    @RolesAllowed({&quot;ROLE_MOD&quot;})
+    @GetMapping()
+    public List&lt;User&gt; getUsers(){
+<span class="nc" id="L30">        return service.getUsers();</span>
+    }
+
+    @IsAuthenticated
+    @RolesAllowed({&quot;ROLE_USER&quot;, &quot;ROLE_MOD&quot;})
+    @PutMapping(&quot;&quot;)
+    @ResponseStatus(code = HttpStatus.OK)
+    public void updateUser(@RequestBody UserDta account){
+
+<span class="nc" id="L39">        service.updateUser(account);</span>
+<span class="nc" id="L40">    }</span>
+
+    @IsAuthenticated
+    @RolesAllowed({&quot;ROLE_USER&quot;, &quot;ROLE_MOD&quot;})
+    @DeleteMapping(&quot;&quot;)
+    public Optional&lt;String&gt; deleteUser(@RequestBody UserDta account){
+<span class="nc" id="L46">        storyService.deleteUsersStory(account);</span>
+<span class="nc" id="L47">        return service.deleteUser(account);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

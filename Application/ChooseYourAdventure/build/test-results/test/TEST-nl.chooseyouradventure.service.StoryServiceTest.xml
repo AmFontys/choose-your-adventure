@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="nl.chooseyouradventure.service.StoryServiceTest" tests="25" skipped="0" failures="0" errors="0" timestamp="2022-11-28T10:58:50" hostname="LAPTOP-T68RLDR0" time="4.618">
+  <properties/>
+  <testcase name="saveStory_withUser()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="3.307"/>
+  <testcase name="saveStoryBody_InvalidStoryIsNull()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.015"/>
+  <testcase name="getStory_withInValidId()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.071"/>
+  <testcase name="getAllStoriesBasedOnName_NameIsNull()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.02"/>
+  <testcase name="saveStoryBody_InvalidStoryBodyIsNull()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.015"/>
+  <testcase name="getStoryBody_validId()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.044"/>
+  <testcase name="getAllStories()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.016"/>
+  <testcase name="getStoryBodyType_NoValidNameIsEmpty()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.101"/>
+  <testcase name="deleteUserStory_ValidId()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.14"/>
+  <testcase name="saveStoryBody_Success()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.091"/>
+  <testcase name="getStoryBodyType_ValidName()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.071"/>
+  <testcase name="deleteStory_ValidId()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.063"/>
+  <testcase name="saveStory_noUser()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.011"/>
+  <testcase name="getStoryBodyType_NoValidNameIsEmptyString()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.054"/>
+  <testcase name="getStory_withValidId()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.019"/>
+  <testcase name="deleteStory_NoValidId()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.048"/>
+  <testcase name="getStoryBodyType()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.047"/>
+  <testcase name="GetAllStoriesUser()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.025"/>
+  <testcase name="getAllStoriesBasedOnName_NameIsEmptyString()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.024"/>
+  <testcase name="getAllStoriesBasedOnName_SizeIsNull()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.081"/>
+  <testcase name="getStoryBody_InvalidId()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.07"/>
+  <testcase name="saveStoryBody_InvalidStoryTypeIsNull()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.005"/>
+  <testcase name="GetAllStoriesUser_withInValidId()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.007"/>
+  <testcase name="deleteUserStory_NoValidId()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.003"/>
+  <testcase name="getStoryBodyType_NoValidNameIsNull()" classname="nl.chooseyouradventure.service.StoryServiceTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

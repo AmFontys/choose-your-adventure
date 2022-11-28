@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="nl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StoryController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ChooseYourAdventure</a> &gt; <a href="index.source.html" class="el_package">nl.chooseyouradventure.controller</a> &gt; <span class="el_source">StoryController.java</span></div><h1>StoryController.java</h1><pre class="source lang-java linenums">package nl.chooseyouradventure.controller;
+
+
+import nl.chooseyouradventure.configuration.security.isauthenticated.IsAuthenticated;
+import nl.chooseyouradventure.model.dta.StoryBodyTypeDta;
+import nl.chooseyouradventure.model.dta.StorybodyDta;
+import nl.chooseyouradventure.model.entity.StoryBodyType;
+import nl.chooseyouradventure.model.entity.Storybody;
+import nl.chooseyouradventure.service.StoryService;
+import nl.chooseyouradventure.model.entity.Story;
+import nl.chooseyouradventure.model.dta.StoryDta;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.security.RolesAllowed;
+import java.util.List;
+import java.util.Optional;
+
+
+@RestController
+@RequestMapping(&quot;/api/story&quot;)
+@CrossOrigin(origins =  {&quot;http://localhost:3000/&quot;})
+<span class="fc" id="L23">public class StoryController {</span>
+    @Autowired
+    private StoryService storyService;
+
+    @PostMapping(&quot;&quot;)
+    public String add(@RequestBody StoryDta story){
+
+<span class="nc" id="L30">        storyService.saveStory(story);</span>
+<span class="nc" id="L31">        return &quot;New Story added&quot;;</span>
+    }
+
+    @GetMapping(&quot;&quot;)
+    public List&lt;StoryDta&gt; list(){
+<span class="nc" id="L36">        return  storyService.getAllStories();</span>
+    }
+    @GetMapping(&quot;/search&quot;)
+    public List&lt;StoryDta&gt; list(@RequestParam(&quot;title&quot;) String name){
+<span class="nc" id="L40">        return  storyService.getAllStories(name);</span>
+    }
+    @IsAuthenticated
+    @RolesAllowed({&quot;ROLE_USER&quot;, &quot;ROLE_MOD&quot;})
+    @GetMapping(&quot;/user&quot;)
+    public List&lt;StoryDta&gt; list(@RequestParam(&quot;userid&quot;) Integer id){
+<span class="nc" id="L46">        return  storyService.getAllStories(id);</span>
+    }
+
+    @GetMapping(&quot;{id}&quot;)
+    public Optional&lt;StoryDta&gt; getStory(@PathVariable Integer id){
+<span class="nc" id="L51">        return  storyService.getStory(id);</span>
+    }
+
+    @GetMapping(&quot;/body/{storyid}&quot;)
+    public List&lt;StorybodyDta&gt; getStoryBody(@PathVariable Integer storyid) {
+        //Later this should first look up the body and then add it to the correct story
+<span class="nc" id="L57">        return storyService.getStoryBody(storyid);</span>
+    }
+
+    @IsAuthenticated
+    @RolesAllowed({&quot;ROLE_USER&quot;, &quot;ROLE_MOD&quot;})
+    @PostMapping(&quot;/body/{storyid}&quot;)
+    public String saveStoryBody(@PathVariable Integer storyid,@RequestBody StorybodyDta storybodyDta) {
+        //Later this should first look up the body and then add it to the correct story
+<span class="nc" id="L65">        Optional&lt;StoryDta&gt; chosenStory = storyService.getStory(storyid);</span>
+<span class="nc" id="L66">        StorybodyDta storybody= storyService.saveStoryBody(chosenStory,storybodyDta);</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        if(storybody !=null)</span>
+<span class="nc" id="L68">            return &quot;New Storybody added&quot;;</span>
+<span class="nc" id="L69">        else return &quot;Fail!&quot;;</span>
+    }
+
+
+    @IsAuthenticated
+    @RolesAllowed({&quot;ROLE_USER&quot;, &quot;ROLE_MOD&quot;})
+    @GetMapping(&quot;/body/type&quot;)
+    public List&lt;StoryBodyTypeDta&gt; getStoryBody() {
+<span class="nc" id="L77">        return storyService.getStoryBodyType();</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

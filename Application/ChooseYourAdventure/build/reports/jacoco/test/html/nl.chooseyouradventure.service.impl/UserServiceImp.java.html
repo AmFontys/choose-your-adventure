@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="nl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserServiceImp.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ChooseYourAdventure</a> &gt; <a href="index.source.html" class="el_package">nl.chooseyouradventure.service.impl</a> &gt; <span class="el_source">UserServiceImp.java</span></div><h1>UserServiceImp.java</h1><pre class="source lang-java linenums">package nl.chooseyouradventure.service.impl;
+
+import lombok.AllArgsConstructor;
+import nl.chooseyouradventure.service.UserService;
+import nl.chooseyouradventure.model.entity.User;
+import nl.chooseyouradventure.model.dta.UserDta;
+import nl.chooseyouradventure.persistence.UserRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+@AllArgsConstructor
+public class UserServiceImp implements UserService {
+    UserRepository userRepository;
+
+    @Override
+    public List&lt;User&gt; getUsers() {
+<span class="fc" id="L20">        return userRepository.findAll();</span>
+    }
+
+    @Override
+    public User updateUser(UserDta account) {
+<span class="nc" id="L25">        Optional&lt;User&gt; user = userRepository.findById(account.getUserid());</span>
+<span class="nc bnc" id="L26" title="All 4 branches missed.">        if (user.isPresent() &amp;&amp; user.get().getUserid() &gt; 0) {</span>
+<span class="nc" id="L27">            User updateAccount = User.builder()</span>
+<span class="nc" id="L28">                    .userid(account.getUserid())</span>
+<span class="nc" id="L29">                    .username(account.getUsername())</span>
+<span class="nc" id="L30">                    .email(account.getEmail())</span>
+<span class="nc" id="L31">                    .password(account.getPassword())</span>
+<span class="nc" id="L32">                    .keyword(account.getKeyword())</span>
+<span class="nc" id="L33">                    .ismod(account.getIsmod())</span>
+<span class="nc" id="L34">                    .build();</span>
+
+<span class="nc" id="L36">            return userRepository.save(updateAccount);</span>
+        }
+<span class="nc" id="L38">        return null;</span>
+    }
+
+    @Override
+    public Optional&lt;String&gt; deleteUser(UserDta account) {
+        try {
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            if (account.getUserid() &gt; 0) {</span>
+<span class="nc" id="L45">                userRepository.deleteById(account.getUserid());</span>
+<span class="nc" id="L46">            return Optional.of(&quot;Succesfull&quot;);</span>
+            }
+        }
+<span class="nc" id="L49">        catch(Exception exception){</span>
+<span class="nc" id="L50">            return Optional.ofNullable(exception.getMessage());</span>
+<span class="nc" id="L51">        }</span>
+<span class="nc" id="L52">        return Optional.of(&quot;This id doesn't exist&quot;);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
