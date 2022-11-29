@@ -53,9 +53,7 @@ public class LoginServiceImp implements LoginService {
                     return UserDta.builder()
                             .userid(logedinUser.get().getUserid())
                             .username(logedinUser.get().getUsername())
-                            .email(logedinUser.get().getEmail())
-                            .password("secret")
-                            .keyword("secret")
+                            .email(logedinUser.get().getEmail())                            
                             .ismod(logedinUser.get().getIsmod())
                             .accesToken(generateAccesToken(logedinUser))
                             .build();

@@ -4,6 +4,7 @@ variables:
 stages: 
   - build
   - test
+  - sonarqubeTest
   - sonarqube
 
 build:
@@ -19,9 +20,15 @@ test:
     - gradle test
 
 
+sonarqube-test:
+  stage: sonarqubeTest 
+  script: 
+    - cd ./Application/ChooseYourAdventure
+    - gradle test jacocoTestReport
+
 sonarqube-check:
   stage: sonarqube  
   script: 
     - cd ./Application/ChooseYourAdventure
-    - gradle test jacocoTestReport sonarqube
+    - gradle sonarqube
 
