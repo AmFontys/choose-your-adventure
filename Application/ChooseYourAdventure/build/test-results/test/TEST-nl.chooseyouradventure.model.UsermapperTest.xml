@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nl.chooseyouradventure.model.UsermapperTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2022-11-28T10:56:27" hostname="LAPTOP-T68RLDR0" time="0.08">
+<testsuite name="nl.chooseyouradventure.model.UsermapperTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2022-11-29T19:24:37" hostname="LAPTOP-T68RLDR0" time="0.436">
   <properties/>
-  <testcase name="giveDta_succesful()" classname="nl.chooseyouradventure.model.UsermapperTest" time="0.01"/>
-  <testcase name="giveDta_noEmail()" classname="nl.chooseyouradventure.model.UsermapperTest" time="0.052"/>
-  <testcase name="giveEntity_successful()" classname="nl.chooseyouradventure.model.UsermapperTest" time="0.003"/>
-  <testcase name="giveEntity_nullGiven()" classname="nl.chooseyouradventure.model.UsermapperTest" time="0.004"/>
-  <testcase name="giveEntity_noEmail()" classname="nl.chooseyouradventure.model.UsermapperTest" time="0.001"/>
-  <testcase name="giveDta_NullEntered()" classname="nl.chooseyouradventure.model.UsermapperTest" time="0.001"/>
+  <testcase name="giveDta_succesful()" classname="nl.chooseyouradventure.model.UsermapperTest" time="0.05"/>
+  <testcase name="giveDta_noEmail()" classname="nl.chooseyouradventure.model.UsermapperTest" time="0.141"/>
+  <testcase name="giveEntity_successful()" classname="nl.chooseyouradventure.model.UsermapperTest" time="0.005"/>
+  <testcase name="giveEntity_nullGiven()" classname="nl.chooseyouradventure.model.UsermapperTest" time="0.012"/>
+  <testcase name="giveEntity_noEmail()" classname="nl.chooseyouradventure.model.UsermapperTest" time="0.021"/>
+  <testcase name="giveDta_NullEntered()" classname="nl.chooseyouradventure.model.UsermapperTest" time="0.009"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

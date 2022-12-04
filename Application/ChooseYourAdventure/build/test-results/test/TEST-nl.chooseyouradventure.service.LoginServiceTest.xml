@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nl.chooseyouradventure.service.LoginServiceTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2022-11-28T10:58:46" hostname="LAPTOP-T68RLDR0" time="4.236">
+<testsuite name="nl.chooseyouradventure.service.LoginServiceTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2022-11-29T19:27:41" hostname="LAPTOP-T68RLDR0" time="2.533">
   <properties/>
-  <testcase name="saveNewUser()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="3.974"/>
-  <testcase name="givenNotSimilarUserPassword_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.047"/>
-  <testcase name="givenNotSimilarEncodingUserPassword_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.054"/>
-  <testcase name="givenNoExistingUserObject_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.012"/>
-  <testcase name="givenNoUserObject_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.018"/>
-  <testcase name="saveUser_withUsedUsername_returnNull()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.015"/>
-  <testcase name="givenNoUserInDB_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.017"/>
-  <testcase name="givenUserObject_when_login_thenReturnUserObject()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.032"/>
+  <testcase name="saveNewUser()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="2.342"/>
+  <testcase name="givenNotSimilarUserPassword_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.049"/>
+  <testcase name="givenNotSimilarEncodingUserPassword_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.015"/>
+  <testcase name="givenNoExistingUserObject_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.008"/>
+  <testcase name="givenNoUserObject_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.003"/>
+  <testcase name="saveUser_withUsedUsername_returnNull()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.003"/>
+  <testcase name="givenNoUserInDB_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.003"/>
+  <testcase name="givenUserObject_when_login_thenReturnUserObject()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.055"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

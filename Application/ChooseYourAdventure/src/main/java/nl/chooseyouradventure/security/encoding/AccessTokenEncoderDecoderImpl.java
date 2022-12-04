@@ -4,7 +4,7 @@ package nl.chooseyouradventure.security.encoding;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import nl.chooseyouradventure.model.AccessToken;
+import nl.chooseyouradventure.model.dta.AccessToken;
 import nl.chooseyouradventure.security.authentication.DatabaseUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

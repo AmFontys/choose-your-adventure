@@ -1,6 +1,6 @@
 package nl.chooseyouradventure.configuration.security.auth;
 
-import nl.chooseyouradventure.model.AccessToken;
+import nl.chooseyouradventure.model.dta.AccessToken;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;

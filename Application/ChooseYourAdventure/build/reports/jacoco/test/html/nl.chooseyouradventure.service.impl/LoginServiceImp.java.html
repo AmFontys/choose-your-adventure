@@ -53,32 +53,30 @@ public class LoginServiceImp implements LoginService {
 <span class="fc" id="L53">                    return UserDta.builder()</span>
 <span class="fc" id="L54">                            .userid(logedinUser.get().getUserid())</span>
 <span class="fc" id="L55">                            .username(logedinUser.get().getUsername())</span>
-<span class="fc" id="L56">                            .email(logedinUser.get().getEmail())</span>
-<span class="fc" id="L57">                            .password(&quot;secret&quot;)</span>
-<span class="fc" id="L58">                            .keyword(&quot;secret&quot;)</span>
-<span class="fc" id="L59">                            .ismod(logedinUser.get().getIsmod())</span>
-<span class="fc" id="L60">                            .accesToken(generateAccesToken(logedinUser))</span>
-<span class="fc" id="L61">                            .build();</span>
+<span class="fc" id="L56">                            .email(logedinUser.get().getEmail())                            </span>
+<span class="fc" id="L57">                            .ismod(logedinUser.get().getIsmod())</span>
+<span class="fc" id="L58">                            .accesToken(generateAccesToken(logedinUser))</span>
+<span class="fc" id="L59">                            .build();</span>
                 }
-<span class="fc" id="L63">            } return null;</span>
+<span class="fc" id="L61">            } return null;</span>
         }
-<span class="fc" id="L65">        else return null;</span>
+<span class="fc" id="L63">        else return null;</span>
     }
 
     private String generateAccesToken(Optional&lt;User&gt; logedinUser) {
-<span class="pc bpc" id="L69" title="1 of 2 branches missed.">        if(logedinUser.isPresent())</span>
-<span class="fc" id="L70">        return accessTokenEncoder.encode(</span>
-<span class="fc" id="L71">                AccessToken.builder()</span>
-<span class="fc" id="L72">                        .subject(logedinUser.get().getUsername())</span>
-<span class="fc" id="L73">                        .roles(returnRole(logedinUser.get().getIsmod()))</span>
-<span class="fc" id="L74">                        .userId(logedinUser.get().getUserid())</span>
-<span class="fc" id="L75">        .build());</span>
-<span class="nc" id="L76">        else return &quot;&quot;;</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">        if(logedinUser.isPresent())</span>
+<span class="fc" id="L68">        return accessTokenEncoder.encode(</span>
+<span class="fc" id="L69">                AccessToken.builder()</span>
+<span class="fc" id="L70">                        .subject(logedinUser.get().getUsername())</span>
+<span class="fc" id="L71">                        .roles(returnRole(logedinUser.get().getIsmod()))</span>
+<span class="fc" id="L72">                        .userId(logedinUser.get().getUserid())</span>
+<span class="fc" id="L73">        .build());</span>
+<span class="nc" id="L74">        else return &quot;&quot;;</span>
     }
 
     private List&lt;String&gt; returnRole(Boolean ismod) {
-<span class="pc bpc" id="L80" title="1 of 2 branches missed.">        if(ismod)return Collections.singletonList(&quot;MOD&quot;);</span>
-<span class="fc" id="L81">        return Collections.singletonList(&quot;USER&quot;);</span>
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">        if(ismod)return Collections.singletonList(&quot;MOD&quot;);</span>
+<span class="fc" id="L79">        return Collections.singletonList(&quot;USER&quot;);</span>
     }
 }
 

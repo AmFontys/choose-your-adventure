@@ -1,7 +1,7 @@
 package nl.chooseyouradventure.service.impl;
 
 import lombok.AllArgsConstructor;
-import nl.chooseyouradventure.model.AccessToken;
+import nl.chooseyouradventure.model.dta.AccessToken;
 import nl.chooseyouradventure.security.encoding.AccessTokenEncoder;
 import nl.chooseyouradventure.service.LoginService;
 import nl.chooseyouradventure.model.entity.User;

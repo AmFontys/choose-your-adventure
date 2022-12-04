@@ -39,9 +39,9 @@ import org.springframework.stereotype.Component;
     private BcryptWorkFactor getClosestStrength(
             BcryptWorkFactor smallFactor, BcryptWorkFactor bigFactor) {
 <span class="pc bpc" id="L41" title="1 of 2 branches missed.">        if (isPreviousDurationCloserToGoal(smallFactor.getDuration(), bigFactor.getDuration())) {</span>
-<span class="fc" id="L42">            return smallFactor;</span>
+<span class="nc" id="L42">            return smallFactor;</span>
         }
-<span class="nc" id="L44">        return bigFactor;</span>
+<span class="fc" id="L44">        return bigFactor;</span>
     }
 
     private long calculateDuration(int strength) {

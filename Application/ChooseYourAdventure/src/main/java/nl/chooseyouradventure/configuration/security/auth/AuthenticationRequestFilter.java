@@ -1,6 +1,6 @@
 package nl.chooseyouradventure.configuration.security.auth;
 
-import nl.chooseyouradventure.model.AccessToken;
+import nl.chooseyouradventure.model.dta.AccessToken;
 import nl.chooseyouradventure.security.encoding.AccessTokenDecoder;
 import nl.chooseyouradventure.security.encoding.InvalidAccessTokenException;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,5 +2,5 @@ projectKey=AdventureHub
 serverUrl=http://localhost:9000
 serverVersion=9.6.1.59531
 dashboardUrl=http://localhost:9000/dashboard?id=AdventureHub
-ceTaskId=AYS9rYqQoqTNnadBZnE-
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYS9rYqQoqTNnadBZnE-
+ceTaskId=AYTE-QJm4Q34feEagiby
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYTE-QJm4Q34feEagiby
