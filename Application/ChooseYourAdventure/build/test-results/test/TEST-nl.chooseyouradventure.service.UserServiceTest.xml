@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nl.chooseyouradventure.service.UserServiceTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2022-11-29T19:27:47" hostname="LAPTOP-T68RLDR0" time="0.174">
+<testsuite name="nl.chooseyouradventure.service.UserServiceTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2022-12-05T16:32:06" hostname="PIRATERYDER" time="0.007">
   <properties/>
-  <testcase name="deleteUser_withInvalidId()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.009"/>
-  <testcase name="updateUser_withUnknownUsername()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.005"/>
-  <testcase name="deleteUser_withValidId()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.055"/>
-  <testcase name="updateUser_withValidInput()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.004"/>
-  <testcase name="updateUser_withInValidInput()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.004"/>
-  <testcase name="getUsers()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.009"/>
-  <testcase name="updateUser_withInValidId()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.05"/>
+  <testcase name="deleteUser_withInvalidId()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.0"/>
+  <testcase name="updateUser_withUnknownUsername()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.0"/>
+  <testcase name="deleteUser_withValidId()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.0"/>
+  <testcase name="updateUser_withValidInput()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.001"/>
+  <testcase name="updateUser_withInValidInput()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.001"/>
+  <testcase name="getUsers()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.002"/>
+  <testcase name="updateUser_withInValidId()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nl.chooseyouradventure.service.impl.StoryServiceImplTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2022-11-29T19:27:47" hostname="LAPTOP-T68RLDR0" time="0.231">
+<testsuite name="nl.chooseyouradventure.service.impl.StoryServiceImplTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2022-12-05T16:32:06" hostname="PIRATERYDER" time="0.007">
   <properties/>
-  <testcase name="deleteStory()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.004"/>
-  <testcase name="getAllStories()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.003"/>
-  <testcase name="saveStoryBody()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.002"/>
-  <testcase name="testGetStoryBodyType()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.087"/>
-  <testcase name="testGetAllStories1()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.004"/>
-  <testcase name="saveStory()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.002"/>
-  <testcase name="getStoryBodyType()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.003"/>
-  <testcase name="deleteUsersStory()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.002"/>
-  <testcase name="testGetAllStories()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.003"/>
-  <testcase name="getStoryBody()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.003"/>
-  <testcase name="getStory()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.081"/>
+  <testcase name="deleteStory()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.0"/>
+  <testcase name="getAllStories()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.0"/>
+  <testcase name="saveStoryBody()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.001"/>
+  <testcase name="testGetStoryBodyType()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.0"/>
+  <testcase name="testGetAllStories1()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.0"/>
+  <testcase name="saveStory()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.001"/>
+  <testcase name="getStoryBodyType()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.0"/>
+  <testcase name="deleteUsersStory()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.0"/>
+  <testcase name="testGetAllStories()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.001"/>
+  <testcase name="getStoryBody()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.0"/>
+  <testcase name="getStory()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -1,69 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nl.chooseyouradventure.model.StoryMapperTest" tests="63" skipped="0" failures="0" errors="0" timestamp="2022-11-29T19:24:33" hostname="LAPTOP-T68RLDR0" time="3.777">
+<testsuite name="nl.chooseyouradventure.model.StoryMapperTest" tests="63" skipped="0" failures="0" errors="0" timestamp="2022-12-05T16:31:43" hostname="PIRATERYDER" time="0.318">
   <properties/>
-  <testcase name="giveEntityStorybodyList_OneNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="1.205"/>
-  <testcase name="giveDtaStorybodyTypeList()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.188"/>
-  <testcase name="giveDtaStoryList_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.111"/>
-  <testcase name="giveDtaStorybodyList_BetweenMissingStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.136"/>
-  <testcase name="giveDtaStoryList_OneNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.091"/>
-  <testcase name="giveDtaStorybodyList_MissingStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.009"/>
-  <testcase name="giveDtaStory_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.062"/>
+  <testcase name="giveEntityStorybodyList_OneNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.208"/>
+  <testcase name="giveDtaStorybodyTypeList()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.006"/>
+  <testcase name="giveDtaStoryList_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.002"/>
+  <testcase name="giveDtaStorybodyList_BetweenMissingStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.004"/>
+  <testcase name="giveDtaStoryList_OneNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStorybodyList_MissingStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStory_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.002"/>
   <testcase name="giveEntityStorybodyList_AllNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
   <testcase name="giveDtaStorybodyList_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
-  <testcase name="giveDtaStoryList_AllNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.002"/>
-  <testcase name="giveDtaStorybodyTypeList_BetweenMissingName()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.002"/>
-  <testcase name="giveDtaStorybody_MissingType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.002"/>
+  <testcase name="giveDtaStoryList_AllNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStorybodyTypeList_BetweenMissingName()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.0"/>
+  <testcase name="giveDtaStorybody_MissingType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
   <testcase name="giveEntityStorybodyList_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
-  <testcase name="giveDtaStoryList_MultipleMissingUser()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.002"/>
+  <testcase name="giveDtaStoryList_MultipleMissingUser()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
   <testcase name="giveDtaStorybodyList_MultipleMissingType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.002"/>
   <testcase name="giveDtaStoryList_MissingUser()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
-  <testcase name="giveDtaStoryList()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.002"/>
-  <testcase name="giveDtaStorybody()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.19"/>
-  <testcase name="giveDtaStorybodyTypeList_OneNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.007"/>
-  <testcase name="giveDtaStorybodyType_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.005"/>
-  <testcase name="giveDtaStorybodyList_GivenOneNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.196"/>
-  <testcase name="giveEntityStorybodyType_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.006"/>
-  <testcase name="giveEntityStorybody_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.008"/>
-  <testcase name="giveDtaStorybodyList()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.007"/>
-  <testcase name="giveDtaStorybodyType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.005"/>
-  <testcase name="giveEntityStoryList()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.008"/>
-  <testcase name="giveEntityStorybody()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.192"/>
-  <testcase name="giveDtaStorybodyTypeList_AllNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.008"/>
-  <testcase name="giveEntityStory_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.011"/>
-  <testcase name="giveDtaStorybodyList_BetweenMissingType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.045"/>
-  <testcase name="giveDtaStorybodyList_GivenAllNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.005"/>
-  <testcase name="giveEntityStorybody_MissingStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.007"/>
-  <testcase name="giveDtaStorybodyList_MultipleMissingStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.005"/>
-  <testcase name="giveDtaStorybody_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.006"/>
-  <testcase name="giveEntityStory_MissingUser()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.006"/>
-  <testcase name="giveDtaStorybody_MissingStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.005"/>
-  <testcase name="giveDtaStorybodyTypeList_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.006"/>
-  <testcase name="giveDtaStoryOptional_MissingStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.023"/>
-  <testcase name="giveDtaStorybodyTypeList_MultipleMissingName()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.007"/>
-  <testcase name="giveEntityStorybody_MissingType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.007"/>
-  <testcase name="giveDtaStoryOptional_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.006"/>
-  <testcase name="giveDtaStory_MissingUser()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.076"/>
-  <testcase name="giveEntityStorybodyList_MissingType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.005"/>
-  <testcase name="giveEntityStoryList_MissingUser()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.012"/>
-  <testcase name="giveEntityStorybodyType_MissingName()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.006"/>
-  <testcase name="giveEntityStoryList_OneMissingUser()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.007"/>
-  <testcase name="giveEntityStorybodyList_MissingStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.007"/>
-  <testcase name="giveEntityStorybodyList()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.123"/>
-  <testcase name="giveEntityStorybodyType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.005"/>
-  <testcase name="giveEntityStorybodyList_BetweenMissingType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.009"/>
-  <testcase name="giveEntityStorybodyList_BetweenMissingStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.011"/>
-  <testcase name="giveEntityStoryList_OneNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.002"/>
+  <testcase name="giveDtaStoryList()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStorybody()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStorybodyTypeList_OneNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.002"/>
+  <testcase name="giveDtaStorybodyType_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStorybodyList_GivenOneNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveEntityStorybodyType_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveEntityStorybody_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.0"/>
+  <testcase name="giveDtaStorybodyList()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStorybodyType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveEntityStoryList()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.0"/>
+  <testcase name="giveEntityStorybody()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStorybodyTypeList_AllNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.002"/>
+  <testcase name="giveEntityStory_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStorybodyList_BetweenMissingType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStorybodyList_GivenAllNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveEntityStorybody_MissingStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.0"/>
+  <testcase name="giveDtaStorybodyList_MultipleMissingStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStorybody_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveEntityStory_MissingUser()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStorybody_MissingStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStorybodyTypeList_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStoryOptional_MissingStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.004"/>
+  <testcase name="giveDtaStorybodyTypeList_MultipleMissingName()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveEntityStorybody_MissingType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStoryOptional_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStory_MissingUser()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveEntityStorybodyList_MissingType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveEntityStoryList_MissingUser()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveEntityStorybodyType_MissingName()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.0"/>
+  <testcase name="giveEntityStoryList_OneMissingUser()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveEntityStorybodyList_MissingStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveEntityStorybodyList()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveEntityStorybodyType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveEntityStorybodyList_BetweenMissingType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveEntityStorybodyList_BetweenMissingStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveEntityStoryList_OneNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.0"/>
   <testcase name="giveEntityStoryList_GivenNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
-  <testcase name="giveEntityStorybodyList_MultipleMissingStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
-  <testcase name="giveDtaStorybodyList_MissingType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.002"/>
-  <testcase name="giveDtaStorybodyType_MissingName()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.002"/>
-  <testcase name="giveEntityStoryList_AllNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.003"/>
-  <testcase name="giveDtaStoryOptional()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.01"/>
-  <testcase name="giveDtaStorybodyTypeList_MissingName()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.009"/>
-  <testcase name="giveEntityStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.01"/>
-  <testcase name="giveDtaStoryOptional_MissingUser()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.05"/>
-  <testcase name="giveDtaStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.007"/>
-  <testcase name="giveEntityStorybodyList_MultipleMissingType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.007"/>
+  <testcase name="giveEntityStorybodyList_MultipleMissingStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.002"/>
+  <testcase name="giveDtaStorybodyList_MissingType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStorybodyType_MissingName()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveEntityStoryList_AllNull()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.0"/>
+  <testcase name="giveDtaStoryOptional()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStorybodyTypeList_MissingName()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveEntityStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStoryOptional_MissingUser()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveDtaStory()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
+  <testcase name="giveEntityStorybodyList_MultipleMissingType()" classname="nl.chooseyouradventure.model.StoryMapperTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
