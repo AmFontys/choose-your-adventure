@@ -11,24 +11,24 @@ build:
   stage: build 
   script:
     - cd ./Application/ChooseYourAdventure 
-    - gradle assemble
+    - .\gradlew assemble
 
 test: 
   stage: test 
   script:
     - cd ./Application/ChooseYourAdventure
-    - gradle test
+    - .\gradlew test
 
 
 sonarqube-test:
   stage: sonarqubeTest 
   script: 
     - cd ./Application/ChooseYourAdventure
-    - gradle test jacocoTestReport
+    - .\gradlew test jacocoTestReport
 
 sonarqube-check:
   stage: sonarqube  
   script: 
     - cd ./Application/ChooseYourAdventure
-    - gradle sonarqube
+    - .\gradlew sonarqube
 

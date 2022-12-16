@@ -24,7 +24,7 @@ public class UserController {
     private StoryService storyService;
 
     @IsAuthenticated
-    @RolesAllowed({&quot;ROLE_MOD&quot;})
+    @RolesAllowed({&quot;ROLE_USER&quot;,&quot;ROLE_MOD&quot;})
     @GetMapping()
     public List&lt;User&gt; getUsers(){
 <span class="nc" id="L30">        return service.getUsers();</span>
@@ -47,4 +47,4 @@ public class UserController {
 <span class="nc" id="L47">        return service.deleteUser(account);</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

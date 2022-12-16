@@ -77,5 +77,8 @@ public class StoryController {
         return storyService.getStoryBodyType();
     }
 
-
+    @DeleteMapping("{id}")
+    public void deleteStory(@PathVariable Integer id){
+        storyService.deleteStory(id);
+    }
 }

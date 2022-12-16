@@ -1,5 +1,7 @@
-package nl.chooseyouradventure.model;
+package nl.chooseyouradventure.mapper;
 
+import nl.chooseyouradventure.model.StoryMapper;
+import nl.chooseyouradventure.model.Usermapper;
 import nl.chooseyouradventure.model.dta.StoryBodyTypeDta;
 import nl.chooseyouradventure.model.dta.StoryDta;
 import nl.chooseyouradventure.model.dta.StorybodyDta;

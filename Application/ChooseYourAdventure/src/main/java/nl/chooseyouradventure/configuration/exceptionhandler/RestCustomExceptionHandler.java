@@ -56,7 +56,7 @@ public class RestCustomExceptionHandler extends ResponseEntityExceptionHandler {
         if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors()
                     .forEach(validationError -> {
-                        if (validationError instanceof final FieldError fieldError) {
+                        if (validationError instanceof FieldError fieldError) {
                             result.add(new ValidationErrorDTO(fieldError.getField(), fieldError.getDefaultMessage()));
                         } else {
                             result.add(new ValidationErrorDTO(validationError.getObjectName(), validationError.getDefaultMessage()));

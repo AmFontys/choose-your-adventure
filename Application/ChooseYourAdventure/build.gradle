@@ -16,6 +16,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
     testImplementation 'junit:junit:4.13.1'
     testImplementation 'junit:junit:4.13.1'
     testImplementation 'junit:junit:4.13.1'
@@ -51,6 +52,7 @@ jacocoTestReport {
                     "nl/chooseyouradventure/**/*DTO.*",
                     "**/configuration/**",
                     "**/model/*",
+                    "nl/chooseyouradventure/configuration/security/SecurityConfiguration.java",
                     "nl/chooseyouradventure/configuration/**",
                     "nl/chooseyouradventure/configuration/security/*",
                     "nl/chooseyouradventure/configuration/security/auth/*",

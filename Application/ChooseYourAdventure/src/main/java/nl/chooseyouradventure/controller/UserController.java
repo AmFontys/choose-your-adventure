@@ -24,7 +24,7 @@ public class UserController {
     private StoryService storyService;
 
     @IsAuthenticated
-    @RolesAllowed({"ROLE_MOD"})
+    @RolesAllowed({"ROLE_USER","ROLE_MOD"})
     @GetMapping()
     public List<User> getUsers(){
         return service.getUsers();

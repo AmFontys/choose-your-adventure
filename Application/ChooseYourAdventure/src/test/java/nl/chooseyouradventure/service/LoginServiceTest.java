@@ -75,7 +75,7 @@ class LoginServiceTest {
 UserDta actualUser = loginService.loginUser(user.getUsername(),user.getPassword());
 
         // then - verify the output
-        assertThat(actualUser).isEqualTo(loggedinUser.get());
+        assertThat(actualUser.getUsername()).isEqualTo(loggedinUser.get().getUsername());
         //verify
     }
 

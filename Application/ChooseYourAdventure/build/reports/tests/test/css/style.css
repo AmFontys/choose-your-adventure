@@ -1,4 +1,3 @@
-
 #summary {
     margin-top: 30px;
     margin-bottom: 40px;
@@ -12,7 +11,8 @@
     vertical-align: top;
 }
 
-.breadcrumbs, .breadcrumbs a {
+.breadcrumbs,
+.breadcrumbs a {
     color: #606060;
 }
 
@@ -27,7 +27,8 @@
     margin: 0;
 }
 
-.counter, .percent {
+.counter,
+.percent {
     font-size: 120%;
     font-weight: bold;
     margin-bottom: 8px;
@@ -37,7 +38,8 @@
     width: 125px;
 }
 
-#successRate, .summaryGroup {
+#successRate,
+.summaryGroup {
     border: solid 2px #d0d0d0;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -52,24 +54,29 @@
     font-size: 180%;
 }
 
-.success, .success a {
+.success,
+.success a {
     color: #008000;
 }
 
-div.success, #successRate.success {
+div.success,
+#successRate.success {
     background-color: #bbd9bb;
     border-color: #008000;
 }
 
-.failures, .failures a {
+.failures,
+.failures a {
     color: #b60808;
 }
 
-.skipped, .skipped a {
+.skipped,
+.skipped a {
     color: #c09853;
 }
 
-div.failures, #successRate.failures {
+div.failures,
+#successRate.failures {
     background-color: #ecdada;
     border-color: #b60808;
 }

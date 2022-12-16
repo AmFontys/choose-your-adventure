@@ -1,6 +1,9 @@
 FROM openjdk:17-jdk-alpine
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+VOLUME /tmp
+ARG JAVA_OPTS
+ENV JAVA_OPTS=$JAVA_OPTS
+COPY build/libs/ChooseYourAdventure-1.0-SNAPSHOT.jar chooseyouradventure.jar
+EXPOSE 8080
+ENTRYPOINT exec java $JAVA_OPTS -jar chooseyouradventure.jar
+# For Spring-Boot project, use the entrypoint below to reduce Tomcat startup time.
+#ENTRYPOINT exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar chooseyouradventure.jar
