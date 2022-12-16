@@ -1,4 +1,4 @@
-package nl.chooseyouradventure.model;
+package nl.chooseyouradventure.model.dta;
 
 import lombok.Data;
 

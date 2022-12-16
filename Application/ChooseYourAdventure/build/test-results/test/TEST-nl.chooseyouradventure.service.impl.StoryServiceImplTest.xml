@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nl.chooseyouradventure.service.impl.StoryServiceImplTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2022-12-16T10:01:55" hostname="PIRATERYDER" time="0.003">
+<testsuite name="nl.chooseyouradventure.service.impl.StoryServiceImplTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2022-12-16T18:35:59" hostname="PIRATERYDER" time="0.003">
   <properties/>
   <testcase name="deleteStory()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.0"/>
-  <testcase name="getAllStories()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.001"/>
+  <testcase name="getAllStories()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.0"/>
   <testcase name="saveStoryBody()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.0"/>
   <testcase name="testGetStoryBodyType()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.0"/>
-  <testcase name="testGetAllStories1()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.001"/>
-  <testcase name="saveStory()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.0"/>
+  <testcase name="testGetAllStories1()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.0"/>
+  <testcase name="saveStory()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.001"/>
   <testcase name="getStoryBodyType()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.0"/>
   <testcase name="deleteUsersStory()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.0"/>
   <testcase name="testGetAllStories()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.0"/>
-  <testcase name="getStoryBody()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.0"/>
+  <testcase name="getStoryBody()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.001"/>
   <testcase name="getStory()" classname="nl.chooseyouradventure.service.impl.StoryServiceImplTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

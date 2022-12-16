@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nl.chooseyouradventure.controller.UserControllerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-12-16T10:01:39" hostname="PIRATERYDER" time="0.002">
+<testsuite name="nl.chooseyouradventure.controller.UserControllerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-12-16T18:35:45" hostname="PIRATERYDER" time="0.002">
   <properties/>
   <testcase name="updateUser()" classname="nl.chooseyouradventure.controller.UserControllerTest" time="0.001"/>
   <testcase name="deleteUser()" classname="nl.chooseyouradventure.controller.UserControllerTest" time="0.0"/>
-  <testcase name="getUsers()" classname="nl.chooseyouradventure.controller.UserControllerTest" time="0.0"/>
+  <testcase name="getUsers()" classname="nl.chooseyouradventure.controller.UserControllerTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

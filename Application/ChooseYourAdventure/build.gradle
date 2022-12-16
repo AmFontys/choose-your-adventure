@@ -47,11 +47,14 @@ jacocoTestReport {
 
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
+            //Less important files that can be included are the controller
+
+            //exclue some of the paths to make a jacocotest
             fileTree(dir: it, exclude: [
-                    "nl/chooseyouradventure/main.class",
+                    "**/nl/chooseyouradventure/Main.*",
+                    "**/controller/*",
                     "nl/chooseyouradventure/**/*DTO.*",
                     "**/configuration/**",
-                    "**/model/*",
                     "nl/chooseyouradventure/configuration/security/SecurityConfiguration.java",
                     "nl/chooseyouradventure/configuration/**",
                     "nl/chooseyouradventure/configuration/security/*",

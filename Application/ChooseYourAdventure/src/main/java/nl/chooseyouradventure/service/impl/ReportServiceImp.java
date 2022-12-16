@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import nl.chooseyouradventure.model.ReportMapper;
 import nl.chooseyouradventure.model.dta.ReportDta;
 import nl.chooseyouradventure.model.dta.ReportTypeDta;
+import nl.chooseyouradventure.model.entity.Report;
 import nl.chooseyouradventure.persistence.ReportRepository;
 import nl.chooseyouradventure.persistence.ReportTypeRepository;
 import nl.chooseyouradventure.service.ReportService;
@@ -26,8 +27,9 @@ public class ReportServiceImp implements ReportService {
 
     @Override
     public String saveReport(ReportDta reportDta) {
+        if(reportDta==null) return  "Report not added";
         reportRepository.save(reportMapping.getReportEntity(reportDta));
-        return "New Report added";
+        return  "New Report added";
     }
 
     @Override
@@ -44,6 +46,7 @@ public class ReportServiceImp implements ReportService {
 
     @Override
     public ReportTypeDta getReportType(String type){
+        if(type ==null) return null;
         return reportMapping.giveDtaReportType(reportTypeRepository.findByType(type));
     }
 
@@ -56,13 +59,14 @@ public class ReportServiceImp implements ReportService {
 
     @Override
     public String deleteReport(Integer id) {
-        if(id<1)return "unsuccesfull";
+        if(id ==null || id <1)return "unsuccesfull";
         reportRepository.deleteById(id);
         return "succesfull";
     }
 
     @Override
     public void updateReport(ReportDta reportDta) {
+        if(reportDta==null)return;
         Optional<ReportDta> checkReport = Optional.ofNullable(reportMapping.getReportDta(reportRepository.findById(reportDta.getReportid())));
         if(checkReport.isPresent() && checkReport.get().getReportid()>0) {
             reportRepository.save(reportMapping.getReportEntity(reportDta));

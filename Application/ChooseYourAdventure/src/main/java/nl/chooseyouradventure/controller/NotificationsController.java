@@ -1,7 +1,7 @@
 package nl.chooseyouradventure.controller;
 
 import lombok.AllArgsConstructor;
-import nl.chooseyouradventure.model.NotificationMessage;
+import nl.chooseyouradventure.model.dta.NotificationMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;

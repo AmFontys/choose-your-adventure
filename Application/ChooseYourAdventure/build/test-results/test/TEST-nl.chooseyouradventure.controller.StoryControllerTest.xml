@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nl.chooseyouradventure.controller.StoryControllerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-12-16T10:01:39" hostname="PIRATERYDER" time="0.002">
+<testsuite name="nl.chooseyouradventure.controller.StoryControllerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-12-16T18:35:45" hostname="PIRATERYDER" time="0.002">
   <properties/>
   <testcase name="add()" classname="nl.chooseyouradventure.controller.StoryControllerTest" time="0.001"/>
   <testcase name="list()" classname="nl.chooseyouradventure.controller.StoryControllerTest" time="0.0"/>

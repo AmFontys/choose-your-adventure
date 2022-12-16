@@ -1,5 +1,6 @@
-package nl.chooseyouradventure.model;
+package nl.chooseyouradventure.mapper;
 
+import nl.chooseyouradventure.model.Usermapper;
 import nl.chooseyouradventure.model.dta.UserDta;
 import nl.chooseyouradventure.model.entity.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -59,7 +60,7 @@ class UsermapperTest {
         //given - precondition or setup
 dta.setEmail(null);
         //when - action or the behaviour that we are going test
-        User actualEntity=Usermapper.giveEntity(null);
+        User actualEntity= Usermapper.giveEntity(null);
         //then - verify the output
         assertThat(actualEntity).isNull();
     }

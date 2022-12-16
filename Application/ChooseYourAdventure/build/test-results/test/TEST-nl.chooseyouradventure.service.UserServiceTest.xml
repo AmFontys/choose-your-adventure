@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nl.chooseyouradventure.service.UserServiceTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2022-12-16T10:01:55" hostname="PIRATERYDER" time="0.002">
+<testsuite name="nl.chooseyouradventure.service.UserServiceTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2022-12-16T18:35:59" hostname="PIRATERYDER" time="0.004">
   <properties/>
   <testcase name="deleteUser_withInvalidId()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.0"/>
-  <testcase name="updateUser_withUnknownUsername()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.0"/>
-  <testcase name="deleteUser_withValidId()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.001"/>
+  <testcase name="updateUser_withUnknownUsername()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.001"/>
+  <testcase name="deleteUser_withValidId()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.0"/>
   <testcase name="updateUser_withValidInput()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.0"/>
   <testcase name="updateUser_withInValidInput()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.0"/>
   <testcase name="getUsers()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.001"/>
-  <testcase name="updateUser_withInValidId()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.0"/>
+  <testcase name="updateUser_withInValidId()" classname="nl.chooseyouradventure.service.UserServiceTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -20,6 +20,8 @@ public class ReportMapper {
 
     StoryMapper storyMapper;
     public Report getReportEntity(ReportDta reportDta) {
+        if( reportDta ==null || reportDta.getReportid()<1)return  null;
+
         Story tempStory =StoryMapper.giveEntityStory(reportDta.getStory());
         ReportType tempReportType = giveEntityReportType(reportDta.getType());
         User tempUser = Usermapper.giveEntity(reportDta.getUser());
@@ -36,24 +38,30 @@ public class ReportMapper {
 
     public List<ReportDta> getReportDta(List<Report> all) {
         List<ReportDta> arrayList = new ArrayList<>();
-        for(Report item : all ) {
-            StoryDta tempStory = storyMapper.giveDtaStory(item.getStory());
-            ReportTypeDta tempReportType = giveDtaReportType(item.getType());
-            UserDta tempUser = Usermapper.giveDta(item.getUser());
+        if(all !=null) {
+            for (Report item : all) {
+                if(item !=null)
+                if (item.getReportid() > 1) {
+                    StoryDta tempStory = storyMapper.giveDtaStory(item.getStory());
+                    ReportTypeDta tempReportType = giveDtaReportType(item.getType());
+                    UserDta tempUser = Usermapper.giveDta(item.getUser());
 
-            arrayList.add(
-            ReportDta.builder()
-                    .reportid(item.getReportid())
-                    .reportText(item.getReportText())
-                    .story(tempStory)
-                    .type(tempReportType)
-                    .user(tempUser)
-                    .build());
+                    arrayList.add(
+                            ReportDta.builder()
+                                    .reportid(item.getReportid())
+                                    .reportText(item.getReportText())
+                                    .story(tempStory)
+                                    .type(tempReportType)
+                                    .user(tempUser)
+                                    .build());
+                }
+            }
         }
          return arrayList;
     }
 
     public ReportDta getReportDta(Optional<Report> byId) {
+        if(byId.isEmpty() || byId.get().getReportid()<1) return null;
         StoryDta tempStory =storyMapper.giveDtaStory(byId.get().getStory());
         ReportTypeDta tempReportType = giveDtaReportType(byId.get().getType());
         UserDta tempUser = Usermapper.giveDta(byId.get().getUser());
@@ -68,6 +76,7 @@ public class ReportMapper {
     }
 
     public ReportTypeDta giveDtaReportType(ReportType type) {
+        if(type==null||type.getReportTypeId()<1) return null;
         return ReportTypeDta.builder()
                 .reportTypeId(type.getReportTypeId())
                 .type(type.getType())
@@ -76,17 +85,24 @@ public class ReportMapper {
 
     public List<ReportTypeDta> giveDtaReportType(List<ReportType> types) {
         List<ReportTypeDta> list = new ArrayList<>();
-        for(ReportType type: types) {
-            list.add( ReportTypeDta.builder()
-                    .reportTypeId(type.getReportTypeId())
-                    .type(type.getType())
-                    .build()
-            );
+        if(types!=null) {
+            for (ReportType type : types) {
+                if(type !=null)
+                if ( type.getReportTypeId() > 0)
+                    list.add(ReportTypeDta.builder()
+                            .reportTypeId(type.getReportTypeId())
+                            .type(type.getType())
+                            .build()
+                    );
+            }
         }
         return list;
     }
 
     public ReportType giveEntityReportType(ReportTypeDta type) {
+        if(type == null || type.getReportTypeId()<1) {
+            return null;
+        }
         return ReportType.builder()
                 .reportTypeId(type.getReportTypeId())
                 .type(type.getType())

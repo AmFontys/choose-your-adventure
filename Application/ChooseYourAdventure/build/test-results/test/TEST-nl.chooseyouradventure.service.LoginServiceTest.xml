@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nl.chooseyouradventure.service.LoginServiceTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2022-12-16T10:01:55" hostname="PIRATERYDER" time="0.077">
+<testsuite name="nl.chooseyouradventure.service.LoginServiceTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2022-12-16T18:35:59" hostname="PIRATERYDER" time="0.073">
   <properties/>
-  <testcase name="saveNewUser()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.068"/>
-  <testcase name="givenNotSimilarUserPassword_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.001"/>
+  <testcase name="saveNewUser()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.064"/>
+  <testcase name="givenNotSimilarUserPassword_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.002"/>
   <testcase name="givenNotSimilarEncodingUserPassword_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.001"/>
   <testcase name="givenNoExistingUserObject_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.001"/>
   <testcase name="givenNoUserObject_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.001"/>
