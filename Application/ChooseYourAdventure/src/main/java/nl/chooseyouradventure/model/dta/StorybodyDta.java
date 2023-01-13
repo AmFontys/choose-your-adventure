@@ -19,7 +19,7 @@ public class StorybodyDta {
     @Lob
     private String text;
 
-
+private Integer chosen;
 
 
 }

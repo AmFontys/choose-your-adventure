@@ -43,7 +43,7 @@ public class Storybody {
     @Type(type="text")
     private String text;
 
-
+    private Integer chosen;
 
 
 }

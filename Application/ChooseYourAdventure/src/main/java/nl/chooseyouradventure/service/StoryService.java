@@ -26,4 +26,8 @@ public interface StoryService {
     StoryBodyTypeDta getStoryBodyType(String typename);
 
     List<StoryDta> getAllStories(String name);
+
+    List<StoryDta> getAllStories(UserDta user);
+
+    String incrementStoryOption(Integer optionId);
 }

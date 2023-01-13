@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nl.chooseyouradventure.security.workfactor.BcCryptWorkFactorServiceTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2022-12-16T18:35:45" hostname="PIRATERYDER" time="13.766">
+<testsuite name="nl.chooseyouradventure.security.workfactor.BcCryptWorkFactorServiceTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2023-01-13T13:56:17" hostname="PIRATERYDER" time="13.184">
   <properties/>
-  <testcase name="calculateStrengthBi()" classname="nl.chooseyouradventure.security.workfactor.BcCryptWorkFactorServiceTest" time="10.436"/>
+  <testcase name="calculateStrengthBi()" classname="nl.chooseyouradventure.security.workfactor.BcCryptWorkFactorServiceTest" time="9.818"/>
   <testcase name="findCloserToShouldReturnGoalIfNumber1IsEqualGoal()" classname="nl.chooseyouradventure.security.workfactor.BcCryptWorkFactorServiceTest" time="0.0"/>
   <testcase name="findCloserToShouldReturnGoalIfNumber2IsEqualGoal()" classname="nl.chooseyouradventure.security.workfactor.BcCryptWorkFactorServiceTest" time="0.0"/>
-  <testcase name="getStrengthShouldReturnPreviousStrengthIfPreviousDurationCloserToGoal()" classname="nl.chooseyouradventure.security.workfactor.BcCryptWorkFactorServiceTest" time="0.0"/>
+  <testcase name="getStrengthShouldReturnPreviousStrengthIfPreviousDurationCloserToGoal()" classname="nl.chooseyouradventure.security.workfactor.BcCryptWorkFactorServiceTest" time="0.001"/>
   <testcase name="getStrengthShouldReturnCurrentStrengthIfCurrentDurationCloserToGoal()" classname="nl.chooseyouradventure.security.workfactor.BcCryptWorkFactorServiceTest" time="0.0"/>
-  <testcase name="calculateStrength()" classname="nl.chooseyouradventure.security.workfactor.BcCryptWorkFactorServiceTest" time="3.328"/>
+  <testcase name="calculateStrength()" classname="nl.chooseyouradventure.security.workfactor.BcCryptWorkFactorServiceTest" time="3.364"/>
   <testcase name="findCloserToShouldReturnNumber1IfItCloserToGoalThanNumber2()" classname="nl.chooseyouradventure.security.workfactor.BcCryptWorkFactorServiceTest" time="0.0"/>
   <testcase name="getStrengthShouldReturn4IfStrengthIs4()" classname="nl.chooseyouradventure.security.workfactor.BcCryptWorkFactorServiceTest" time="0.0"/>
   <testcase name="findCloserToShouldReturnNUmber2IfItCloserToGoalThanNumber1()" classname="nl.chooseyouradventure.security.workfactor.BcCryptWorkFactorServiceTest" time="0.001"/>

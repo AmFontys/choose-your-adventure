@@ -20,19 +20,20 @@ public class ReportMapper {
 
     StoryMapper storyMapper;
     public Report getReportEntity(ReportDta reportDta) {
-        if( reportDta ==null || reportDta.getReportid()<1)return  null;
+        if( reportDta !=null && reportDta.getReportid()>0) {
+            Story tempStory = StoryMapper.giveEntityStory(reportDta.getStory());
+            ReportType tempReportType = giveEntityReportType(reportDta.getType());
+            User tempUser = Usermapper.giveEntity(reportDta.getUser());
 
-        Story tempStory =StoryMapper.giveEntityStory(reportDta.getStory());
-        ReportType tempReportType = giveEntityReportType(reportDta.getType());
-        User tempUser = Usermapper.giveEntity(reportDta.getUser());
-
-        return Report.builder()
-                .reportid(reportDta.getReportid())
-                .reportText(reportDta.getReportText())
-                .story(tempStory)
-                .type(tempReportType)
-                .user(tempUser)
-                .build();
+            return Report.builder()
+                    .reportid(reportDta.getReportid())
+                    .reportText(reportDta.getReportText())
+                    .story(tempStory)
+                    .type(tempReportType)
+                    .user(tempUser)
+                    .build();
+        }
+        else return null;
     }
 
 

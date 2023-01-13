@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nl.chooseyouradventure.security.authentication.UserDetailsMapperTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-12-16T18:35:45" hostname="PIRATERYDER" time="0.006">
+<testsuite name="nl.chooseyouradventure.security.authentication.UserDetailsMapperTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-01-13T13:56:17" hostname="PIRATERYDER" time="0.004">
   <properties/>
-  <testcase name="toUserDetails_IsMod()" classname="nl.chooseyouradventure.security.authentication.UserDetailsMapperTest" time="0.004"/>
+  <testcase name="toUserDetails_IsMod()" classname="nl.chooseyouradventure.security.authentication.UserDetailsMapperTest" time="0.003"/>
   <testcase name="toUserDetails_IsUser()" classname="nl.chooseyouradventure.security.authentication.UserDetailsMapperTest" time="0.0"/>
-  <testcase name="toUserDetails_NoRole()" classname="nl.chooseyouradventure.security.authentication.UserDetailsMapperTest" time="0.001"/>
+  <testcase name="toUserDetails_NoRole()" classname="nl.chooseyouradventure.security.authentication.UserDetailsMapperTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -2,6 +2,7 @@ package nl.chooseyouradventure.service.impl;
 
 import nl.chooseyouradventure.model.ReportMapper;
 import nl.chooseyouradventure.model.StoryMapper;
+import nl.chooseyouradventure.model.Usermapper;
 import nl.chooseyouradventure.model.dta.ReportDta;
 import nl.chooseyouradventure.model.dta.ReportTypeDta;
 import nl.chooseyouradventure.model.dta.StoryDta;
@@ -35,6 +36,9 @@ import static org.mockito.Mockito.verify;
 class ReportServiceImpTest {
 
     ReportMapper mapper;
+
+    StoryMapper storyMapper;
+
     @InjectMocks
     ReportService service;
 
@@ -251,7 +255,7 @@ class ReportServiceImpTest {
     }
 
     @Test
-    void getOneReport_GivenNull() {
+    void getOneReport_ReturnNull() {
         // given - precondition or setup
         Report report = null;
 
@@ -261,6 +265,32 @@ class ReportServiceImpTest {
         // then - verify the output
         assertThat(returnItem).isNull();
         verify(reportRepository).findById(any());
+
+    }
+
+    @Test
+    void getOneReport_EnteredNegative() {
+        // given - precondition or setup
+        User user = User.builder()
+                .userid(100).username("Bob").email("bob@gmail.com").password("secret").keyword("Knan").ismod(false)
+                .build();
+        Story story = new Story(10,user,"Fake story");
+        ReportType type = new ReportType(1,"Racism");
+
+        Report report = Report.builder()
+                .reportid(9)
+                .user(user)
+                .story(story)
+                .type(type)
+                .reportText("Fake report")
+                .build();
+
+        given(reportRepository.findById(9)).willReturn(Optional.ofNullable(report));
+        // when -  action or the behaviour that we are going test
+        ReportDta returnItem = service.getOneReport(-9);
+        // then - verify the output
+        assertThat(returnItem).isNull();
+        verify(reportRepository,never()).findById(any());
 
     }
 
@@ -300,6 +330,16 @@ class ReportServiceImpTest {
         assertThat(actual).isEqualTo("unsuccesfull");
         verify(reportRepository,never()).deleteById(any());
     }
+    @Test
+    void deleteReport_GivenNegative() {
+        //given - precondition or setup
+
+        // when -  action or the behaviour that we are going test
+        String actual = service.deleteReport(-2);
+        // then - verify the output
+        assertThat(actual).isEqualTo("unsuccesfull");
+        verify(reportRepository,never()).deleteById(any());
+    }
 
     @Test
     void updateReport_GivenNull() {
@@ -309,6 +349,77 @@ class ReportServiceImpTest {
         service.updateReport(reportDta);
         // then - verify the output
         verify(reportRepository,never()).findById(any());
+        verify(reportRepository,never()).save(any());
+    }
+
+    @Test
+    void updateReport_GivenNoId() {
+        //given - precondition or setup
+
+
+        UserDta userDta = UserDta.builder()
+                .userid(100).username("Bob").email("bob@gmail.com").password("secret").keyword("Knan").ismod(false)
+                .build();
+        StoryDta storyDta = new StoryDta(10,userDta,"Fake story");
+        ReportTypeDta typeDta = new ReportTypeDta(1,"Racism");
+
+        ReportDta reportDtaOrginal = ReportDta.builder()
+                .reportid(0)
+                .user(userDta)
+                .story(storyDta)
+                .type(typeDta)
+                .reportText("Fake report")
+                .build();
+
+
+
+        Report reportOrginal = Report.builder()
+                .reportid(0)
+                .user(Usermapper.giveEntity(userDta))
+                .story(StoryMapper.giveEntityStory(storyDta))
+                .type(mapper.giveEntityReportType(typeDta))
+                .reportText("Fake report")
+                .build();
+
+        given(reportRepository.findById(reportOrginal.getReportid())).willReturn(Optional.ofNullable(reportOrginal));
+
+        // when -  action or the behaviour that we are going test
+        service.updateReport(reportDtaOrginal);
+        // then - verify the output
+        verify(reportRepository).findById(reportOrginal.getReportid());
+        verify(reportRepository,never()).save(any());
+    }
+
+    @Test
+    void updateReport_GivenNoPresent() {
+        //given - precondition or setup
+        UserDta userDta = UserDta.builder()
+                .userid(100).username("Bob").email("bob@gmail.com").password("secret").keyword("Knan").ismod(false)
+                .build();
+        StoryDta storyDta = new StoryDta(10,userDta,"Fake story");
+        ReportTypeDta typeDta = new ReportTypeDta(1,"Racism");
+
+        ReportDta reportDtaOrginal = ReportDta.builder()
+                .reportid(8)
+                .user(userDta)
+                .story(storyDta)
+                .type(typeDta)
+                .reportText("Fake report")
+                .build();
+
+        Report reportOrginal = Report.builder()
+                .reportid(8)
+                .user(Usermapper.giveEntity(userDta))
+                .story(StoryMapper.giveEntityStory(storyDta))
+                .type(mapper.giveEntityReportType(typeDta))
+                .reportText("Fake report")
+                .build();
+
+        given(reportRepository.findById(reportOrginal.getReportid())).willReturn(Optional.empty());
+        // when -  action or the behaviour that we are going test
+        service.updateReport(reportDtaOrginal);
+        // then - verify the output
+        verify(reportRepository).findById(8);
         verify(reportRepository,never()).save(any());
     }
 }

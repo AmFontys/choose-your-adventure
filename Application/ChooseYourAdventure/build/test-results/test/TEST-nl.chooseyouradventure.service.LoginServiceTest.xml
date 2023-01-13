@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nl.chooseyouradventure.service.LoginServiceTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2022-12-16T18:35:59" hostname="PIRATERYDER" time="0.073">
+<testsuite name="nl.chooseyouradventure.service.LoginServiceTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2023-01-13T13:56:31" hostname="PIRATERYDER" time="0.079">
   <properties/>
-  <testcase name="saveNewUser()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.064"/>
+  <testcase name="saveNewUser()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.065"/>
   <testcase name="givenNotSimilarUserPassword_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.002"/>
+  <testcase name="loginUser_SuccesfullModLogin()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.002"/>
   <testcase name="givenNotSimilarEncodingUserPassword_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.001"/>
   <testcase name="givenNoExistingUserObject_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.001"/>
-  <testcase name="givenNoUserObject_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.001"/>
+  <testcase name="givenNoUserObject_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.0"/>
   <testcase name="saveUser_withUsedUsername_returnNull()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.001"/>
-  <testcase name="givenNoUserInDB_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.001"/>
-  <testcase name="givenUserObject_when_login_thenReturnUserObject()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.002"/>
+  <testcase name="givenNoUserInDB_when_login_thenReturnNothing()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.002"/>
+  <testcase name="givenUserObject_when_login_thenReturnUserObject()" classname="nl.chooseyouradventure.service.LoginServiceTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

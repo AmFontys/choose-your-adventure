@@ -15,6 +15,7 @@ import nl.chooseyouradventure.model.entity.User;
 import nl.chooseyouradventure.model.dta.StoryDta;
 import nl.chooseyouradventure.persistence.StoryRepository;
 import nl.chooseyouradventure.persistence.UserRepository;
+import org.aspectj.apache.bcel.generic.RET;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -144,6 +145,36 @@ Storybody storybody = StoryMapper.giveEntityStorybody(storybodyDta);
             return makeStoryUserSecure(allSearchedStories);
         }
         return  null;
+
+    }
+
+    @Override
+    public List<StoryDta> getAllStories(UserDta user) {
+        if(user == null|| user.getUsername() == null ||  user.getUsername().equals("")) return null;
+
+        List<StoryDta> allStoriesByUser = storyMapper.giveDtaStory(storyRepository.findAllByUserUsernameContaining(user.getUsername()));
+        if(allStoriesByUser.size()>0)
+            return  allStoriesByUser;
+
+        return null;
+    }
+
+    @Override
+    public String incrementStoryOption(Integer optionId) {
+        try {
+            Optional<Storybody> optional = storybodyRepository.findById(optionId);
+            if(optional.isPresent()) {
+                Integer lastChosenNmb = optional.get().getChosen();
+                Integer newNumber = lastChosenNmb == null ? 1 : lastChosenNmb + 1;
+
+                storybodyRepository.addOneToChosen(newNumber, optionId);
+                return "success";
+            }
+            return "no success";
+        }
+        catch (Exception ex){
+            return "no success";
+        }
 
     }
 

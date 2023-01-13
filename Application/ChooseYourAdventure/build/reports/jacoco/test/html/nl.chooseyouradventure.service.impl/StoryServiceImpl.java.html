@@ -15,6 +15,7 @@ import nl.chooseyouradventure.model.entity.User;
 import nl.chooseyouradventure.model.dta.StoryDta;
 import nl.chooseyouradventure.persistence.StoryRepository;
 import nl.chooseyouradventure.persistence.UserRepository;
+import org.aspectj.apache.bcel.generic.RET;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -36,133 +37,163 @@ public class StoryServiceImpl implements StoryService {
 
     @Override
     public Story saveStory(StoryDta storyDta) {
-<span class="pc bpc" id="L39" title="1 of 4 branches missed.">        if(storyDta.getUser() != null &amp;&amp; userRepository.findByUsername( storyDta.getUser().getUsername()).isPresent()) {</span>
-<span class="fc" id="L40">            User user = User.builder()</span>
-<span class="fc" id="L41">                    .userid(storyDta.getUser().getUserid())</span>
-<span class="fc" id="L42">                    .username(storyDta.getUser().getUsername())</span>
-<span class="fc" id="L43">                    .password(storyDta.getUser().getPassword())</span>
-<span class="fc" id="L44">                    .keyword(storyDta.getUser().getKeyword())</span>
-<span class="fc" id="L45">                    .email(storyDta.getUser().getEmail())</span>
-<span class="fc" id="L46">                    .ismod(storyDta.getUser().getIsmod())</span>
-<span class="fc" id="L47">                    .build();</span>
+<span class="pc bpc" id="L40" title="1 of 4 branches missed.">        if(storyDta.getUser() != null &amp;&amp; userRepository.findByUsername( storyDta.getUser().getUsername()).isPresent()) {</span>
+<span class="fc" id="L41">            User user = User.builder()</span>
+<span class="fc" id="L42">                    .userid(storyDta.getUser().getUserid())</span>
+<span class="fc" id="L43">                    .username(storyDta.getUser().getUsername())</span>
+<span class="fc" id="L44">                    .password(storyDta.getUser().getPassword())</span>
+<span class="fc" id="L45">                    .keyword(storyDta.getUser().getKeyword())</span>
+<span class="fc" id="L46">                    .email(storyDta.getUser().getEmail())</span>
+<span class="fc" id="L47">                    .ismod(storyDta.getUser().getIsmod())</span>
+<span class="fc" id="L48">                    .build();</span>
 
-<span class="fc" id="L49">            Story story = Story.builder()</span>
-<span class="fc" id="L50">                    .title(storyDta.getTitle())</span>
-<span class="fc" id="L51">                    .user(user)</span>
-<span class="fc" id="L52">                    .build();</span>
+<span class="fc" id="L50">            Story story = Story.builder()</span>
+<span class="fc" id="L51">                    .title(storyDta.getTitle())</span>
+<span class="fc" id="L52">                    .user(user)</span>
+<span class="fc" id="L53">                    .build();</span>
 
-<span class="fc" id="L54">            return storyRepository.save(story);</span>
+<span class="fc" id="L55">            return storyRepository.save(story);</span>
         }
-<span class="fc" id="L56">        return  null;</span>
+<span class="fc" id="L57">        return  null;</span>
     }
 
     @Override
     public List&lt;StoryDta&gt; getAllStories() {
-<span class="fc" id="L61">        List&lt;StoryDta&gt; allStories= storyMapper.giveDtaStory( storyRepository.findAll());</span>
-<span class="pc bpc" id="L62" title="1 of 2 branches missed.">        if(allStories.size()&gt;0)</span>
-<span class="fc" id="L63">            return makeStoryUserSecure(allStories);</span>
-<span class="nc" id="L64">        else return null;</span>
+<span class="fc" id="L62">        List&lt;StoryDta&gt; allStories= storyMapper.giveDtaStory( storyRepository.findAll());</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        if(allStories.size()&gt;0)</span>
+<span class="fc" id="L64">            return makeStoryUserSecure(allStories);</span>
+<span class="fc" id="L65">        else return null;</span>
     }
 
 
     @Override
     public List&lt;StoryDta&gt; getAllStories(Integer userId) {
-<span class="fc" id="L70">        List&lt;StoryDta&gt; allStories= storyMapper.giveDtaStory(storyRepository.findAllByUserUserid(userId));</span>
-<span class="fc bfc" id="L71" title="All 2 branches covered.">        if(allStories.size()&gt;0)</span>
-<span class="fc" id="L72">            return makeStoryUserSecure(allStories);</span>
-<span class="fc" id="L73">        else return null;</span>
+<span class="fc" id="L71">        List&lt;StoryDta&gt; allStories= storyMapper.giveDtaStory(storyRepository.findAllByUserUserid(userId));</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        if(allStories.size()&gt;0)</span>
+<span class="fc" id="L73">            return makeStoryUserSecure(allStories);</span>
+<span class="fc" id="L74">        else return null;</span>
     }
 
     @Override
     public Optional&lt;StoryDta&gt; getStory(Integer id) {
-<span class="fc" id="L78">        return storyMapper.giveDtaStory(storyRepository.findById(id));</span>
+<span class="fc" id="L79">        return storyMapper.giveDtaStory(storyRepository.findById(id));</span>
     }
 
     @Override
     public void deleteUsersStory(UserDta account) {
-<span class="fc bfc" id="L83" title="All 2 branches covered.">        if (account.getUserid() &gt; 0) {</span>
-<span class="fc" id="L84">            User deleteAccount = User.builder()</span>
-<span class="fc" id="L85">                    .userid(account.getUserid())</span>
-<span class="fc" id="L86">                    .build();</span>
-<span class="fc" id="L87">            storyRepository.deleteAll(storyRepository.findAllByUser(deleteAccount));</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        if (account.getUserid() &gt; 0) {</span>
+<span class="fc" id="L85">            User deleteAccount = User.builder()</span>
+<span class="fc" id="L86">                    .userid(account.getUserid())</span>
+<span class="fc" id="L87">                    .build();</span>
+<span class="fc" id="L88">            storyRepository.deleteAll(storyRepository.findAllByUser(deleteAccount));</span>
         }
-<span class="fc" id="L89">    }</span>
+<span class="fc" id="L90">    }</span>
 
     @Override
     public void deleteStory(Integer id) {
-<span class="pc bpc" id="L93" title="1 of 2 branches missed.">if(id&gt;0) {</span>
-<span class="fc" id="L94">    storyRepository.deleteById(id);</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">if(id&gt;0) {</span>
+<span class="fc" id="L95">    storyRepository.deleteById(id);</span>
 }
-<span class="fc" id="L96">    }</span>
+<span class="fc" id="L97">    }</span>
 
     @Override
     public List&lt;StorybodyDta&gt; getStoryBody(Integer storyid) {
-<span class="pc bpc" id="L100" title="1 of 2 branches missed.">        if(storyid&gt;0) {</span>
-<span class="fc" id="L101">            List&lt;StorybodyDta&gt; dtaList = storyMapper.giveDtaStorybody(storybodyRepository.findAllByStoryStoryid(storyid));</span>
-<span class="pc bpc" id="L102" title="1 of 2 branches missed.">            if(dtaList.size()&gt;0)</span>
-<span class="fc" id="L103">                return makeStorybodyUserSecure(dtaList);</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        if(storyid&gt;0) {</span>
+<span class="fc" id="L102">            List&lt;StorybodyDta&gt; dtaList = storyMapper.giveDtaStorybody(storybodyRepository.findAllByStoryStoryid(storyid));</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">            if(dtaList.size()&gt;0)</span>
+<span class="fc" id="L104">                return makeStorybodyUserSecure(dtaList);</span>
         }
-<span class="nc" id="L105">        return null;</span>
+<span class="fc" id="L106">        return null;</span>
     }
 
 
 
     @Override
     public StorybodyDta saveStoryBody(Optional&lt;StoryDta&gt; story, StorybodyDta storybodyDta) {
-<span class="pc bpc" id="L112" title="1 of 4 branches missed.">        if(storybodyDta==null || story.isEmpty()) return  null;</span>
+<span class="pc bpc" id="L113" title="1 of 4 branches missed.">        if(storybodyDta==null || story.isEmpty()) return  null;</span>
 
-<span class="pc bpc" id="L114" title="1 of 2 branches missed.">        if(storybodyDta.getType()!=null)</span>
-<span class="fc" id="L115">            storybodyDta.setType(getStoryBodyType(storybodyDta.getType().getTypename()));</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">        if(storybodyDta.getType()!=null)</span>
+<span class="fc" id="L116">            storybodyDta.setType(getStoryBodyType(storybodyDta.getType().getTypename()));</span>
 
-<span class="pc bpc" id="L117" title="2 of 4 branches missed.">        if(story.isPresent() &amp;&amp; (storybodyDta.getType() !=null)) {</span>
-<span class="fc" id="L118">            storybodyDta.setStory(story.get());</span>
-<span class="fc" id="L119">Storybody storybody = StoryMapper.giveEntityStorybody(storybodyDta);</span>
-<span class="fc" id="L120">            return storyMapper.giveDtaStorybody(storybodyRepository.save(storybody));</span>
+<span class="pc bpc" id="L118" title="1 of 4 branches missed.">        if(story.isPresent() &amp;&amp; (storybodyDta.getType() !=null)) {</span>
+<span class="fc" id="L119">            storybodyDta.setStory(story.get());</span>
+<span class="fc" id="L120">Storybody storybody = StoryMapper.giveEntityStorybody(storybodyDta);</span>
+<span class="fc" id="L121">            return storyMapper.giveDtaStorybody(storybodyRepository.save(storybody));</span>
 
         }
-<span class="nc" id="L123">       return  null;</span>
+<span class="fc" id="L124">       return  null;</span>
     }
 
     @Override
     public List&lt;StoryBodyTypeDta&gt; getStoryBodyType() {
-<span class="fc" id="L128">        return storyMapper.giveDtaStorybodyType(storybodyTypeRepository.findAll());</span>
+<span class="fc" id="L129">        return storyMapper.giveDtaStorybodyType(storybodyTypeRepository.findAll());</span>
     }
 
     @Override
     public StoryBodyTypeDta getStoryBodyType(String typename) {
-<span class="pc bpc" id="L133" title="1 of 4 branches missed.">        if(typename.equals(&quot;&quot;) || typename==null)</span>
-<span class="fc" id="L134">            return  null;</span>
-<span class="fc" id="L135">        else return storyMapper.giveDtaStorybodyType(storybodyTypeRepository.findByTypename(typename));</span>
+<span class="pc bpc" id="L134" title="1 of 4 branches missed.">        if(typename.equals(&quot;&quot;) || typename==null)</span>
+<span class="fc" id="L135">            return  null;</span>
+<span class="fc" id="L136">        else return storyMapper.giveDtaStorybodyType(storybodyTypeRepository.findByTypename(typename));</span>
     }
 
     @Override
     public List&lt;StoryDta&gt; getAllStories(String name) {
-<span class="fc bfc" id="L140" title="All 4 branches covered.">        if(name==null || name.equals(&quot;&quot;)) return null;</span>
+<span class="fc bfc" id="L141" title="All 4 branches covered.">        if(name==null || name.equals(&quot;&quot;)) return null;</span>
 
-<span class="fc" id="L142">        List&lt;StoryDta&gt; allSearchedStories= storyMapper.giveDtaStory(storyRepository.findAllByTitleContaining(name));</span>
-<span class="pc bpc" id="L143" title="1 of 2 branches missed.">        if(allSearchedStories.size()&gt;0){</span>
-<span class="nc" id="L144">            return makeStoryUserSecure(allSearchedStories);</span>
+<span class="fc" id="L143">        List&lt;StoryDta&gt; allSearchedStories= storyMapper.giveDtaStory(storyRepository.findAllByTitleContaining(name));</span>
+<span class="fc bfc" id="L144" title="All 2 branches covered.">        if(allSearchedStories.size()&gt;0){</span>
+<span class="fc" id="L145">            return makeStoryUserSecure(allSearchedStories);</span>
         }
-<span class="fc" id="L146">        return  null;</span>
+<span class="fc" id="L147">        return  null;</span>
+
+    }
+
+    @Override
+    public List&lt;StoryDta&gt; getAllStories(UserDta user) {
+<span class="fc bfc" id="L153" title="All 6 branches covered.">        if(user == null|| user.getUsername() == null ||  user.getUsername().equals(&quot;&quot;)) return null;</span>
+
+<span class="fc" id="L155">        List&lt;StoryDta&gt; allStoriesByUser = storyMapper.giveDtaStory(storyRepository.findAllByUserUsernameContaining(user.getUsername()));</span>
+<span class="fc bfc" id="L156" title="All 2 branches covered.">        if(allStoriesByUser.size()&gt;0)</span>
+<span class="fc" id="L157">            return  allStoriesByUser;</span>
+
+<span class="fc" id="L159">        return null;</span>
+    }
+
+    @Override
+    public String incrementStoryOption(Integer optionId) {
+        try {
+<span class="fc" id="L165">            Optional&lt;Storybody&gt; optional = storybodyRepository.findById(optionId);</span>
+<span class="fc bfc" id="L166" title="All 2 branches covered.">            if(optional.isPresent()) {</span>
+<span class="fc" id="L167">                Integer lastChosenNmb = optional.get().getChosen();</span>
+<span class="fc bfc" id="L168" title="All 2 branches covered.">                Integer newNumber = lastChosenNmb == null ? 1 : lastChosenNmb + 1;</span>
+
+<span class="fc" id="L170">                storybodyRepository.addOneToChosen(newNumber, optionId);</span>
+<span class="fc" id="L171">                return &quot;success&quot;;</span>
+            }
+<span class="fc" id="L173">            return &quot;no success&quot;;</span>
+        }
+<span class="fc" id="L175">        catch (Exception ex){</span>
+<span class="fc" id="L176">            return &quot;no success&quot;;</span>
+        }
 
     }
 
     private List&lt;StoryDta&gt; makeStoryUserSecure(List&lt;StoryDta&gt; list){
-<span class="fc bfc" id="L151" title="All 2 branches covered.">        for (StoryDta story : list){</span>
-<span class="fc" id="L152">            story.getUser().setPassword(&quot;secret&quot;);</span>
-<span class="fc" id="L153">            story.getUser().setKeyword(&quot;secret&quot;);</span>
-<span class="fc" id="L154">            story.getUser().setIsmod(null);</span>
+<span class="fc bfc" id="L182" title="All 2 branches covered.">        for (StoryDta story : list){</span>
+<span class="fc" id="L183">            story.getUser().setPassword(&quot;secret&quot;);</span>
+<span class="fc" id="L184">            story.getUser().setKeyword(&quot;secret&quot;);</span>
+<span class="fc" id="L185">            story.getUser().setIsmod(null);</span>
 
-<span class="fc" id="L156">        }</span>
-<span class="fc" id="L157">        return list;</span>
+<span class="fc" id="L187">        }</span>
+<span class="fc" id="L188">        return list;</span>
     }
 
     private List&lt;StorybodyDta&gt; makeStorybodyUserSecure(List&lt;StorybodyDta&gt; dtaList) {
-<span class="fc bfc" id="L161" title="All 2 branches covered.">        for (StorybodyDta storybodyDta: dtaList){</span>
-<span class="fc" id="L162">            storybodyDta.getStory().getUser().setPassword(&quot;secret&quot;);</span>
-<span class="fc" id="L163">            storybodyDta.getStory().getUser().setKeyword(&quot;secret&quot;);</span>
-<span class="fc" id="L164">        }</span>
-<span class="fc" id="L165">        return dtaList;</span>
+<span class="fc bfc" id="L192" title="All 2 branches covered.">        for (StorybodyDta storybodyDta: dtaList){</span>
+<span class="fc" id="L193">            storybodyDta.getStory().getUser().setPassword(&quot;secret&quot;);</span>
+<span class="fc" id="L194">            storybodyDta.getStory().getUser().setKeyword(&quot;secret&quot;);</span>
+<span class="fc" id="L195">        }</span>
+<span class="fc" id="L196">        return dtaList;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

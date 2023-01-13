@@ -4,8 +4,10 @@ package nl.chooseyouradventure.controller;
 import nl.chooseyouradventure.configuration.security.isauthenticated.IsAuthenticated;
 import nl.chooseyouradventure.model.dta.StoryBodyTypeDta;
 import nl.chooseyouradventure.model.dta.StorybodyDta;
+import nl.chooseyouradventure.model.dta.UserDta;
 import nl.chooseyouradventure.model.entity.StoryBodyType;
 import nl.chooseyouradventure.model.entity.Storybody;
+import nl.chooseyouradventure.model.entity.User;
 import nl.chooseyouradventure.service.StoryService;
 import nl.chooseyouradventure.model.entity.Story;
 import nl.chooseyouradventure.model.dta.StoryDta;
@@ -36,8 +38,14 @@ public class StoryController {
         return  storyService.getAllStories();
     }
     @GetMapping("/search")
-    public List<StoryDta> list(@RequestParam("title") String name){
+    public List<StoryDta> search(@RequestParam("title") String name){
         return  storyService.getAllStories(name);
+    }
+    @GetMapping("/searchUser")
+    public List<StoryDta> searchUser(@RequestParam("username") String username){
+        UserDta userDta = UserDta.builder().username(username).build();
+        return  storyService.getAllStories(userDta);
+        //return null;
     }
     @IsAuthenticated
     @RolesAllowed({"ROLE_USER", "ROLE_MOD"})
@@ -69,6 +77,10 @@ public class StoryController {
         else return "Fail!";
     }
 
+    @PostMapping("/body/Inc/{optionId}")
+    public String incrementOption(@PathVariable Integer optionId ){
+        return storyService.incrementStoryOption(optionId);
+    }
 
     @IsAuthenticated
     @RolesAllowed({"ROLE_USER", "ROLE_MOD"})

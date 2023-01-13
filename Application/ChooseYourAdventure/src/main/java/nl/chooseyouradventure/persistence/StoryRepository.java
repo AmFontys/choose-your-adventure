@@ -23,4 +23,6 @@ public interface StoryRepository extends JpaRepository<Story,Integer> {
     List<Story> findAllByUserUserid(Integer id);
 
     List<Story> findAllByTitleContaining( String name);
+
+    List<Story> findAllByUserUsernameContaining(String username);
 }

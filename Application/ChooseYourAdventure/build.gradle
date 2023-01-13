@@ -61,6 +61,7 @@ jacocoTestReport {
                     "nl/chooseyouradventure/configuration/security/auth/*",
                     "nl/chooseyouradventure/configuration/security/isauthenticated/*",
                     "nl/chooseyouradventure/security/authentication/DatabaseUserDetail*",
+                    "nl/chooseyouradventure/security/encoding/InvalidAccessTokenException"
 
             ])
         }))

@@ -142,6 +142,19 @@ class StoryServiceTest {
     }
 
     @Test
+    void getAllStories_noList() {
+        // given - precondition or setup
+
+        List<Story> stories = new ArrayList<>();
+        given(storyRepository.findAll()).willReturn(stories);
+        // when -  action or the behaviour that we are going test
+        List<StoryDta> actualStories = storyService.getAllStories();
+        // then - verify the output
+        assertThat(actualStories).isNull();
+        verify(storyRepository).findAll();
+    }
+
+    @Test
     void GetAllStoriesUser() {
         // given - precondition or setup
         Story story2 = Story.builder()
@@ -231,11 +244,11 @@ class StoryServiceTest {
     void deleteStory_NoValidId(){
 // given - precondition or setup
 
-        user.setUserid(0);
+
         // when -  action or the behaviour that we are going test
-        storyService.deleteUsersStory(Usermapper.giveDta(user));
+        storyService.deleteStory(0);
         // then - verify the output
-        verify(storyRepository,never()).deleteByUser(user);
+        verify(storyRepository,never()).deleteById(any());
     }
 
     @Test
@@ -262,6 +275,7 @@ class StoryServiceTest {
         // then - verify the output
         assertThat(actualStories).isNotNull();
         assertThat(actualStories).hasSize(2);
+        verify(storybodyRepository).findAllByStoryStoryid(1);
     }
 
     @Test
@@ -270,9 +284,22 @@ class StoryServiceTest {
 
 
         // when -  action or the behaviour that we are going test
-        List<StoryDta> actualStories = storyService.getAllStories(0);
+        List<StorybodyDta> actualStories = storyService.getStoryBody(0);
         // then - verify the output
         assertThat(actualStories).isNull();
+    }
+
+    @Test
+    void getStoryBody_emptyList(){
+        // given - precondition or setup
+
+        List<Storybody> stories = new ArrayList<>();
+        given(storybodyRepository.findAllByStoryStoryid(1)).willReturn(stories);
+        // when -  action or the behaviour that we are going test
+        List<StorybodyDta> actualStories = storyService.getStoryBody(1);
+        // then - verify the output
+        assertThat(actualStories).isNull();
+        verify(storybodyRepository).findAllByStoryStoryid(1);
     }
 
     @Test
@@ -326,6 +353,68 @@ given(storybodyRepository.save(storybody)).willReturn(storybody);
         assertThat(actualStories).isNull();
     }
 
+    @Test
+    void saveStoryBody_noType(){
+// given - precondition or setup
+        User userCreated = User.builder()
+                .userid(200)
+                .username("Ramen")
+                .password("passwordEncoded")
+                .keyword("key")
+                .email("ramen@gmail.com")
+                .ismod(false)
+                .build();
+
+        Story storyCreated = Story.builder()
+                .title("NewTitle")
+                .user(userCreated)
+                .build();
+
+        StorybodyDta storybodyCreated = StorybodyDta.builder()
+                .bodyTitle("title of amazing")
+                .story(storyMapper.giveDtaStory(story))
+                .text("Introduction text")
+                .build();
+
+
+        // when -  action or the behaviour that we are going test
+        StorybodyDta actualStories = storyService.saveStoryBody(Optional.of(storyMapper.giveDtaStory( storyCreated)), storybodyCreated);
+        // then - verify the output
+        assertThat(actualStories).isNull();
+        verify(storybodyRepository,never()).save(any());
+    }
+
+    @Test
+    void saveStoryBody_noTypeNoStory(){
+// given - precondition or setup
+
+        StoryDta storyCreated = StoryDta.builder()
+                .build();
+
+        StorybodyDta storybodyCreated = StorybodyDta.builder()
+                .bodyTitle("title of amazing")
+                .story(storyMapper.giveDtaStory(story))
+                .text("Introduction text")
+                .build();
+
+
+        // when -  action or the behaviour that we are going test
+        StorybodyDta actualStories = storyService.saveStoryBody(Optional.of(storyCreated), storybodyCreated);
+        // then - verify the output
+        assertThat(actualStories).isNull();
+        verify(storybodyRepository,never()).save(any());
+    }
+
+    @Test
+    void saveStoryBody_noBodyNoStory(){
+// given - precondition or setup
+
+        // when -  action or the behaviour that we are going test
+        StorybodyDta actualStories = storyService.saveStoryBody(Optional.empty(), null);
+        // then - verify the output
+        assertThat(actualStories).isNull();
+        verify(storybodyRepository,never()).save(any());
+    }
 
     @Test
     void getStoryBodyType(){
@@ -416,6 +505,249 @@ given(storyRepository.findAllByTitleContaining("size")).willReturn(emptyList);
         List<StoryDta> actualStories = storyService.getAllStories("size");
         // then - verify the output
         assertThat(actualStories).isNull();
+    }
+
+    @Test
+    void getAllStoriesBasedOnName_SizeIsTwo(){
+// given - precondition or setup
+        User userCreated = User.builder()
+                .userid(200)
+                .username("Ramen")
+                .password("passwordEncoded")
+                .keyword("key")
+                .email("ramen@gmail.com")
+                .ismod(false)
+                .build();
+
+        Story storyCreatedOne = Story.builder()
+                .storyid(1)
+                .title("NewTitle")
+                .user(userCreated)
+                .build();
+
+        Story storyCreatedTwo = Story.builder()
+                .storyid(2)
+                .title("NewTitle")
+                .user(userCreated)
+                .build();
+
+        List<Story> list = new ArrayList<>();
+        list.add(storyCreatedOne);
+        list.add(storyCreatedTwo);
+        given(storyRepository.findAllByTitleContaining("size")).willReturn(list);
+        // when -  action or the behaviour that we are going test
+        List<StoryDta> actualStories = storyService.getAllStories("size");
+        // then - verify the output
+        assertThat(actualStories).hasSize(2);
+        verify(storyRepository).findAllByTitleContaining("size");
+    }
+
+    @Test
+    void incrementStoryOption_Success(){
+        //given - precondition or setup
+        Integer optionIdGiven = 1;
+
+        Optional<Storybody> optionalReturnBody = Optional.ofNullable(
+        Storybody.builder()
+                .bodyTitle("title of amazing")
+                .type(StoryBodyType.builder().storyBodyTypeId(1).typename("Intro").build())
+                .story(story)
+                .text("Introduction text")
+                .chosen(1)
+                .build());
+
+        given(storybodyRepository.findById(optionIdGiven)).willReturn(optionalReturnBody);
+        // when -  action or the behaviour that we are going test
+        String returnedValue = storyService.incrementStoryOption(optionIdGiven);
+        // then - verify the output
+        assertThat(returnedValue).isEqualTo("success");
+        verify(storybodyRepository).findById(1);
+        verify(storybodyRepository).addOneToChosen(2,1);
+    }
+
+    @Test
+    void incrementStoryOption_catch(){
+        //given - precondition or setup
+        Integer optionIdGiven = 1;
+
+        given(storybodyRepository.findById(optionIdGiven)).willReturn(null);
+        // when -  action or the behaviour that we are going test
+        String returnedValue = storyService.incrementStoryOption(optionIdGiven);
+        // then - verify the output
+        assertThat(returnedValue).isEqualTo("no success");
+        verify(storybodyRepository).findById(1);
+        verify(storybodyRepository,never()).addOneToChosen(any(),any());
+    }
+    @Test
+    void incrementStoryOption_noOptional(){
+        //given - precondition or setup
+        Integer optionIdGiven = 1;
+
+        Optional<Storybody> emptyOptional = Optional.empty();
+
+        given(storybodyRepository.findById(optionIdGiven)).willReturn(emptyOptional);
+        // when -  action or the behaviour that we are going test
+        String returnedValue = storyService.incrementStoryOption(optionIdGiven);
+        // then - verify the output
+        assertThat(returnedValue).isEqualTo("no success");
+        verify(storybodyRepository).findById(1);
+        verify(storybodyRepository,never()).addOneToChosen(any(),any());
+    }
+
+    @Test
+    void incrementStoryOption_noChosen(){
+        //given - precondition or setup
+        Integer optionIdGiven = 1;
+
+        Optional<Storybody> optionalReturnBody = Optional.ofNullable(
+                Storybody.builder()
+                        .bodyTitle("title of amazing")
+                        .type(StoryBodyType.builder().storyBodyTypeId(1).typename("Intro").build())
+                        .story(story)
+                        .text("Introduction text")
+                        .build());
+
+        given(storybodyRepository.findById(optionIdGiven)).willReturn(optionalReturnBody);
+        // when -  action or the behaviour that we are going test
+        String returnedValue = storyService.incrementStoryOption(optionIdGiven);
+        // then - verify the output
+        assertThat(returnedValue).isEqualTo("success");
+        verify(storybodyRepository).findById(1);
+        verify(storybodyRepository).addOneToChosen(1,1);
+    }
+
+
+    @Test
+    void incrementStoryOption_nullInputted(){
+        //given - precondition or setup
+
+        // when -  action or the behaviour that we are going test
+        String returnedValue = storyService.incrementStoryOption(null);
+        // then - verify the output
+        assertThat(returnedValue).isEqualTo("no success");
+        verify(storybodyRepository).findById(null);
+        verify(storybodyRepository,never()).addOneToChosen(any(),any());
+    }
+
+    @Test
+    void incrementStoryOption_MinusInputted(){
+        //given - precondition or setup
+
+        // when -  action or the behaviour that we are going test
+        String returnedValue = storyService.incrementStoryOption(-1);
+        // then - verify the output
+        assertThat(returnedValue).isEqualTo("no success");
+        verify(storybodyRepository).findById(-1);
+        verify(storybodyRepository,never()).addOneToChosen(any(),any());
+    }
+
+    @Test
+    void getAllStoriesUserDta_success(){
+        //given - precondition or setup
+        UserDta givenUser = UserDta.builder()
+                .userid(200)
+                .username("Ramen")
+                .password("passwordEncoded")
+                .keyword("key")
+                .email("ramen@gmail.com")
+                .ismod(false)
+                .build();
+        User userStory = User.builder()
+                .userid(200)
+                .username("Ramen")
+                .password("passwordEncoded")
+                .keyword("key")
+                .email("ramen@gmail.com")
+                .ismod(false)
+                .build();
+
+        Story userStory1 = Story.builder().title("NewTitle")
+                .user( userStory)
+                .build();
+        Story userStory2 = Story.builder().title("BestTitle")
+                .user( userStory)
+                .build();
+        List<Story> returnList = new ArrayList<>();
+        returnList.add(userStory1);
+        returnList.add(userStory2);
+
+        given(storyRepository.findAllByUserUsernameContaining(user.getUsername())).willReturn(returnList);
+        // when -  action or the behaviour that we are going test
+        List<StoryDta> actualList = storyService.getAllStories(givenUser);
+        // then - verify the output
+        assertThat(actualList).hasSize(2);
+        verify(storyRepository).findAllByUserUsernameContaining("Ramen");
+    }
+    @Test
+    void getAllStoriesUserDta_NullUser(){
+        //given - precondition or setup
+        UserDta givenUser = null;
+
+        // when -  action or the behaviour that we are going test
+        List<StoryDta> actualList = storyService.getAllStories(givenUser);
+        // then - verify the output
+        assertThat(actualList).isNullOrEmpty();
+        verify(storyRepository,never()).findAllByUserUsernameContaining(any());
+    }
+
+    @Test
+    void getAllStoriesUserDta_EmptyUsername(){
+//given - precondition or setup
+        UserDta givenUser = UserDta.builder()
+                .userid(200)
+                .username("")
+                .password("passwordEncoded")
+                .keyword("key")
+                .email("ramen@gmail.com")
+                .ismod(false)
+                .build();
+
+        // when -  action or the behaviour that we are going test
+        List<StoryDta> actualList = storyService.getAllStories(givenUser);
+        // then - verify the output
+        assertThat(actualList).isNullOrEmpty();
+        verify(storyRepository,never()).findAllByUserUsernameContaining(any());
+    }
+
+    @Test
+    void getAllStoriesUserDta_NoUsernameSpecified(){
+//given - precondition or setup
+        UserDta givenUser = UserDta.builder()
+                .userid(200)
+                .password("passwordEncoded")
+                .keyword("key")
+                .email("ramen@gmail.com")
+                .ismod(false)
+                .build();
+
+        // when -  action or the behaviour that we are going test
+        List<StoryDta> actualList = storyService.getAllStories(givenUser);
+        // then - verify the output
+        assertThat(actualList).isNullOrEmpty();
+        verify(storyRepository,never()).findAllByUserUsernameContaining(any());
+    }
+
+    @Test
+    void getAllStoriesUserDta_EmptyList(){
+//given - precondition or setup
+        UserDta givenUser = UserDta.builder()
+                .userid(200)
+                .username("Ramen")
+                .password("passwordEncoded")
+                .keyword("key")
+                .email("ramen@gmail.com")
+                .ismod(false)
+                .build();
+
+        List<Story> returnList = new ArrayList<>();
+
+
+        given(storyRepository.findAllByUserUsernameContaining(user.getUsername())).willReturn(returnList);
+        // when -  action or the behaviour that we are going test
+        List<StoryDta> actualList = storyService.getAllStories(givenUser);
+        // then - verify the output
+        assertThat(actualList).isNullOrEmpty();
+        verify(storyRepository).findAllByUserUsernameContaining("Ramen");
     }
 
 }

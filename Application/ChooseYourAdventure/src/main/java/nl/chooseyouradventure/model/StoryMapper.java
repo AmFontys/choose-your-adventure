@@ -103,6 +103,7 @@ public class StoryMapper {
                          .bodyTitle(dta.getBodyTitle())
                          .text(dta.getText())
                          .type(type)
+                         .chosen(dta.getChosen())
                          .build());
              }
          }
@@ -123,6 +124,7 @@ if(story==null) return null;
           .bodyTitle(dta.getBodyTitle())
           .text(dta.getText())
           .type(type)
+          .chosen(dta.getChosen())
           .build();
     }
 
@@ -139,6 +141,7 @@ if(story==null) return null;
                 .bodyTitle(storybody.getBodyTitle())
                 .text(storybody.getText())
                 .type(type)
+                .chosen(storybody.getChosen())
                 .build();
     }
 
@@ -158,6 +161,7 @@ if(story==null) return null;
                         .bodyTitle(storybody.getBodyTitle())
                         .text(storybody.getText())
                         .type(type)
+                        .chosen(storybody.getChosen())
                         .build());
 
             }
