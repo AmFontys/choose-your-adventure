@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="nl.chooseyouradventure.security.encoding.AccessTokenEncoderDecoderImplTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2023-01-13T13:56:17" hostname="PIRATERYDER" time="0.06">
+  <properties/>
+  <testcase name="decode()" classname="nl.chooseyouradventure.security.encoding.AccessTokenEncoderDecoderImplTest" time="0.044"/>
+  <testcase name="encode()" classname="nl.chooseyouradventure.security.encoding.AccessTokenEncoderDecoderImplTest" time="0.002"/>
+  <testcase name="decode_expired()" classname="nl.chooseyouradventure.security.encoding.AccessTokenEncoderDecoderImplTest" time="0.005"/>
+  <testcase name="encode_EmptyRoles()" classname="nl.chooseyouradventure.security.encoding.AccessTokenEncoderDecoderImplTest" time="0.001"/>
+  <testcase name="getUsernameFromToken()" classname="nl.chooseyouradventure.security.encoding.AccessTokenEncoderDecoderImplTest" time="0.002"/>
+  <testcase name="encode_EmptyUserId()" classname="nl.chooseyouradventure.security.encoding.AccessTokenEncoderDecoderImplTest" time="0.001"/>
+  <testcase name="getClaimFromToken()" classname="nl.chooseyouradventure.security.encoding.AccessTokenEncoderDecoderImplTest" time="0.0"/>
+  <testcase name="getExpirationDateFromToken()" classname="nl.chooseyouradventure.security.encoding.AccessTokenEncoderDecoderImplTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="nl.chooseyouradventure.mapper.ReportMapperTest" tests="20" skipped="0" failures="0" errors="0" timestamp="2023-01-13T13:56:17" hostname="PIRATERYDER" time="0.108">
+  <properties/>
+  <testcase name="giveEntityReportType_MissingId()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.078"/>
+  <testcase name="giveDtaReportTypeList_MissingId()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.01"/>
+  <testcase name="giveDtaReportTypeList_IsNull()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.001"/>
+  <testcase name="getReportEntity_IsNull()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.0"/>
+  <testcase name="giveDtaReportType()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.005"/>
+  <testcase name="getReportEntity_MissingIdReport()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.002"/>
+  <testcase name="giveEntityReportType_IsNull()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.0"/>
+  <testcase name="getReportDta()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.001"/>
+  <testcase name="getReportDtaList()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.001"/>
+  <testcase name="giveDtaReportType_IsNull()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.0"/>
+  <testcase name="getReportDta_MissingIdReport()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.001"/>
+  <testcase name="getReportDta_IsNull()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.0"/>
+  <testcase name="giveDtaReportTypeList()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.001"/>
+  <testcase name="getReportDtaList_IsNull()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.0"/>
+  <testcase name="getReportDtaList_ItemsAreNull()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.001"/>
+  <testcase name="giveEntityReportType()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.001"/>
+  <testcase name="getReportEntity()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.0"/>
+  <testcase name="giveDtaReportTypeList_ItemsAreNull()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.001"/>
+  <testcase name="giveDtaReportType_MissingId()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.0"/>
+  <testcase name="getReportDtaList_MissingIdReport()" classname="nl.chooseyouradventure.mapper.ReportMapperTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

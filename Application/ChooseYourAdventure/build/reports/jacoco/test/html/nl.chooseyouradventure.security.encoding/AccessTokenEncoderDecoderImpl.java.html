@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="nl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AccessTokenEncoderDecoderImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ChooseYourAdventure</a> &gt; <a href="index.source.html" class="el_package">nl.chooseyouradventure.security.encoding</a> &gt; <span class="el_source">AccessTokenEncoderDecoderImpl.java</span></div><h1>AccessTokenEncoderDecoderImpl.java</h1><pre class="source lang-java linenums">package nl.chooseyouradventure.security.encoding;
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css" />
+    <link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif" />
+    <title>AccessTokenEncoderDecoderImpl.java</title>
+    <link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css" />
+    <script type="text/javascript" src="../jacoco-resources/prettify.js"></script>
+</head>
+
+<body onload="window['PR_TAB_WIDTH']=4;prettyPrint()">
+    <div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html"
+                class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ChooseYourAdventure</a>
+        &gt; <a href="index.source.html" class="el_package">nl.chooseyouradventure.security.encoding</a> &gt; <span
+            class="el_source">AccessTokenEncoderDecoderImpl.java</span></div>
+    <h1>AccessTokenEncoderDecoderImpl.java</h1>
+    <pre class="source lang-java linenums">package nl.chooseyouradventure.security.encoding;
 
 
 import io.jsonwebtoken.*;
@@ -34,22 +53,22 @@ public class AccessTokenEncoderDecoderImpl implements AccessTokenEncoder, Access
 
     @Override
     public String encode(AccessToken accessToken) {
-<span class="nc" id="L37">        Map&lt;String, Object&gt; claimsMap = new HashMap&lt;&gt;();</span>
-<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (!CollectionUtils.isEmpty(accessToken.getRoles())) {</span>
-<span class="nc" id="L39">            claimsMap.put(&quot;roles&quot;, accessToken.getRoles());</span>
+<span class="fc" id="L37">        Map&lt;String, Object&gt; claimsMap = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (!CollectionUtils.isEmpty(accessToken.getRoles())) {</span>
+<span class="fc" id="L39">            claimsMap.put(&quot;roles&quot;, accessToken.getRoles());</span>
         }
-<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (accessToken.getUserId() != null) {</span>
-<span class="nc" id="L42">            claimsMap.put(&quot;userid&quot;, accessToken.getUserId());</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (accessToken.getUserId() != null) {</span>
+<span class="fc" id="L42">            claimsMap.put(&quot;userid&quot;, accessToken.getUserId());</span>
         }
 
-<span class="nc" id="L45">        Instant now = Instant.now();</span>
-<span class="nc" id="L46">        return Jwts.builder()</span>
-<span class="nc" id="L47">                .setSubject(accessToken.getSubject())</span>
-<span class="nc" id="L48">                .setIssuedAt(Date.from(now))</span>
-<span class="nc" id="L49">                .setExpiration(Date.from(now.plus(60, ChronoUnit.MINUTES)))</span>
-<span class="nc" id="L50">                .addClaims(claimsMap)</span>
-<span class="nc" id="L51">                .signWith(key)</span>
-<span class="nc" id="L52">                .compact();</span>
+<span class="fc" id="L45">        Instant now = Instant.now();</span>
+<span class="fc" id="L46">        return Jwts.builder()</span>
+<span class="fc" id="L47">                .setSubject(accessToken.getSubject())</span>
+<span class="fc" id="L48">                .setIssuedAt(Date.from(now))</span>
+<span class="fc" id="L49">                .setExpiration(Date.from(now.plus(60, ChronoUnit.MINUTES)))</span>
+<span class="fc" id="L50">                .addClaims(claimsMap)</span>
+<span class="fc" id="L51">                .signWith(key)</span>
+<span class="fc" id="L52">                .compact();</span>
     }
 
     @Override
@@ -60,7 +79,7 @@ public class AccessTokenEncoderDecoderImpl implements AccessTokenEncoder, Access
 //UserDetails userDetails =  userDetailsService.loadUserByUsername(username);
 //
 //            if(validateToken(accessTokenEncoded,userDetails)) {
-<span class="nc bnc" id="L63" title="All 2 branches missed.">            if(validateToken(accessTokenEncoded)){</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">            if(validateToken(accessTokenEncoded)){</span>
 //                String sjwt =Jwts.builder() // Compliant
 //                        .setSubject(userDetails.getUsername())
 //                        .signWith(SignatureAlgorithm.HS256, key)
@@ -68,54 +87,59 @@ public class AccessTokenEncoderDecoderImpl implements AccessTokenEncoder, Access
 //// Verifying:
 //                Jwts.parser().setSigningKey(key).parseClaimsJws(accessTokenEncoded).getBody(); // Compliant
 
-<span class="nc" id="L71">                Jwt jwt = Jwts.parserBuilder().setSigningKey(key).build().parse(accessTokenEncoded);</span>
-<span class="nc" id="L72">                Claims claims = (Claims) jwt.getBody();</span>
+<span class="fc" id="L71">                Jwt jwt = Jwts.parserBuilder().setSigningKey(key).build().parse(accessTokenEncoded);</span>
+<span class="fc" id="L72">                Claims claims = (Claims) jwt.getBody();</span>
 
-<span class="nc" id="L74">                List&lt;String&gt; roles = claims.get(&quot;roles&quot;, List.class);</span>
+<span class="fc" id="L74">                List&lt;String&gt; roles = claims.get(&quot;roles&quot;, List.class);</span>
 
-<span class="nc" id="L76">                return AccessToken.builder()</span>
-<span class="nc" id="L77">                        .subject(claims.getSubject())</span>
-<span class="nc" id="L78">                        .roles(roles)</span>
-<span class="nc" id="L79">                        .userId(claims.get(&quot;userid&quot;, Integer.class))</span>
-<span class="nc" id="L80">                        .build();</span>
+<span class="fc" id="L76">                return AccessToken.builder()</span>
+<span class="fc" id="L77">                        .subject(claims.getSubject())</span>
+<span class="fc" id="L78">                        .roles(roles)</span>
+<span class="fc" id="L79">                        .userId(claims.get(&quot;userid&quot;, Integer.class))</span>
+<span class="fc" id="L80">                        .build();</span>
             }
 <span class="nc" id="L82">            return null;</span>
-<span class="nc" id="L83">        } catch (JwtException e) {</span>
-<span class="nc" id="L84">            throw new InvalidAccessTokenException(e.getMessage());</span>
+<span class="fc" id="L83">        } catch (JwtException e) {</span>
+<span class="fc" id="L84">            throw new InvalidAccessTokenException(e.getMessage());</span>
         }
     }
 
     private boolean validateToken(String token) {
 //        final String username = getUsernameFromToken(token);
 //        return (username.equals(details.getUsername()) &amp;&amp; !isTokenExpired(token));
-<span class="nc bnc" id="L91" title="All 2 branches missed.">        return !isTokenExpired(token);</span>
+<span class="pc bpc" id="L91" title="1 of 2 branches missed.">        return !isTokenExpired(token);</span>
     }
 
     //retrieve expiration date from jwt token
     public Date getExpirationDateFromToken(String token) {
-<span class="nc" id="L96">        return getClaimFromToken(token, Claims::getExpiration);</span>
+<span class="fc" id="L96">        return getClaimFromToken(token, Claims::getExpiration);</span>
     }
     public &lt;T&gt; T getClaimFromToken(String token, Function&lt;Claims, T&gt; claimsResolver) {
-<span class="nc" id="L99">        final Claims claims = getAllClaimsFromToken(token);</span>
-<span class="nc" id="L100">        return claimsResolver.apply(claims);</span>
+<span class="fc" id="L99">        final Claims claims = getAllClaimsFromToken(token);</span>
+<span class="fc" id="L100">        return claimsResolver.apply(claims);</span>
     }
     //for retrieveing any information from token we will need the secret key
     private Claims getAllClaimsFromToken(String token) {
-<span class="nc" id="L104">        return Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody();</span>
+<span class="fc" id="L104">        return Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody();</span>
     }
     //check if the token has expired
     private Boolean isTokenExpired(String token) {
-<span class="nc" id="L108">        final Date expiration = getExpirationDateFromToken(token);</span>
-<span class="nc" id="L109">        return expiration.before(new Date());</span>
+<span class="fc" id="L108">        final Date expiration = getExpirationDateFromToken(token);</span>
+<span class="fc" id="L109">        return expiration.before(new Date());</span>
     }
 
     //retrieve username from jwt token
     public String getUsernameFromToken(String token) {
-<span class="nc" id="L114">        return getClaimFromToken(token, Claims::getSubject);</span>
+<span class="fc" id="L114">        return getClaimFromToken(token, Claims::getSubject);</span>
     }
 
 
 
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre>
+    <div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a>
+            0.8.7.202105040129</span></div>
+</body>
+
+</html>

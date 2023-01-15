@@ -71,28 +71,28 @@ window['PR_TAB_WIDTH'] = 8;
   */
 window['PR_normalizedHtml']
 
-/** Contains functions for creating and registering new language handlers.
-  * @type {Object}
-  */
+  /** Contains functions for creating and registering new language handlers.
+    * @type {Object}
+    */
   = window['PR']
 
-/** Pretty print a chunk of code.
-  *
-  * @param {string} sourceCodeHtml code as html
-  * @return {string} code as html, but prettier
-  */
+  /** Pretty print a chunk of code.
+    *
+    * @param {string} sourceCodeHtml code as html
+    * @return {string} code as html, but prettier
+    */
   = window['prettyPrintOne']
-/** Find all the {@code <pre>} and {@code <code>} tags in the DOM with
-  * {@code class=prettyprint} and prettify them.
-  * @param {Function?} opt_whenDone if specified, called when the last entry
-  *     has been finished.
-  */
+  /** Find all the {@code <pre>} and {@code <code>} tags in the DOM with
+    * {@code class=prettyprint} and prettify them.
+    * @param {Function?} opt_whenDone if specified, called when the last entry
+    *     has been finished.
+    */
   = window['prettyPrint'] = void 0;
 
 /** browser detection. @extern @returns false if not IE, otherwise the major version. */
 window['_pr_isIE6'] = function () {
   var ieVersion = navigator && navigator.userAgent &&
-      navigator.userAgent.match(/\bMSIE ([678])\./);
+    navigator.userAgent.match(/\bMSIE ([678])\./);
   ieVersion = ieVersion ? +ieVersion[1] : false;
   window['_pr_isIE6'] = function () { return ieVersion; };
   return ieVersion;
@@ -102,44 +102,44 @@ window['_pr_isIE6'] = function () {
 (function () {
   // Keyword lists for various languages.
   var FLOW_CONTROL_KEYWORDS =
-      "break continue do else for if return while ";
+    "break continue do else for if return while ";
   var C_KEYWORDS = FLOW_CONTROL_KEYWORDS + "auto case char const default " +
-      "double enum extern float goto int long register short signed sizeof " +
-      "static struct switch typedef union unsigned void volatile ";
+    "double enum extern float goto int long register short signed sizeof " +
+    "static struct switch typedef union unsigned void volatile ";
   var COMMON_KEYWORDS = C_KEYWORDS + "catch class delete false import " +
-      "new operator private protected public this throw true try typeof ";
+    "new operator private protected public this throw true try typeof ";
   var CPP_KEYWORDS = COMMON_KEYWORDS + "alignof align_union asm axiom bool " +
-      "concept concept_map const_cast constexpr decltype " +
-      "dynamic_cast explicit export friend inline late_check " +
-      "mutable namespace nullptr reinterpret_cast static_assert static_cast " +
-      "template typeid typename using virtual wchar_t where ";
+    "concept concept_map const_cast constexpr decltype " +
+    "dynamic_cast explicit export friend inline late_check " +
+    "mutable namespace nullptr reinterpret_cast static_assert static_cast " +
+    "template typeid typename using virtual wchar_t where ";
   var JAVA_KEYWORDS = COMMON_KEYWORDS +
-      "abstract boolean byte extends final finally implements import " +
-      "instanceof null native package strictfp super synchronized throws " +
-      "transient ";
+    "abstract boolean byte extends final finally implements import " +
+    "instanceof null native package strictfp super synchronized throws " +
+    "transient ";
   var CSHARP_KEYWORDS = JAVA_KEYWORDS +
-      "as base by checked decimal delegate descending event " +
-      "fixed foreach from group implicit in interface internal into is lock " +
-      "object out override orderby params partial readonly ref sbyte sealed " +
-      "stackalloc string select uint ulong unchecked unsafe ushort var ";
+    "as base by checked decimal delegate descending event " +
+    "fixed foreach from group implicit in interface internal into is lock " +
+    "object out override orderby params partial readonly ref sbyte sealed " +
+    "stackalloc string select uint ulong unchecked unsafe ushort var ";
   var JSCRIPT_KEYWORDS = COMMON_KEYWORDS +
-      "debugger eval export function get null set undefined var with " +
-      "Infinity NaN ";
+    "debugger eval export function get null set undefined var with " +
+    "Infinity NaN ";
   var PERL_KEYWORDS = "caller delete die do dump elsif eval exit foreach for " +
-      "goto if import last local my next no our print package redo require " +
-      "sub undef unless until use wantarray while BEGIN END ";
+    "goto if import last local my next no our print package redo require " +
+    "sub undef unless until use wantarray while BEGIN END ";
   var PYTHON_KEYWORDS = FLOW_CONTROL_KEYWORDS + "and as assert class def del " +
-      "elif except exec finally from global import in is lambda " +
-      "nonlocal not or pass print raise try with yield " +
-      "False True None ";
+    "elif except exec finally from global import in is lambda " +
+    "nonlocal not or pass print raise try with yield " +
+    "False True None ";
   var RUBY_KEYWORDS = FLOW_CONTROL_KEYWORDS + "alias and begin case class def" +
-      " defined elsif end ensure false in module next nil not or redo rescue " +
-      "retry self super then true undef unless until when yield BEGIN END ";
+    " defined elsif end ensure false in module next nil not or redo rescue " +
+    "retry self super then true undef unless until when yield BEGIN END ";
   var SH_KEYWORDS = FLOW_CONTROL_KEYWORDS + "case done elif esac eval fi " +
-      "function in local set then until ";
+    "function in local set then until ";
   var ALL_KEYWORDS = (
-      CPP_KEYWORDS + CSHARP_KEYWORDS + JSCRIPT_KEYWORDS + PERL_KEYWORDS +
-      PYTHON_KEYWORDS + RUBY_KEYWORDS + SH_KEYWORDS);
+    CPP_KEYWORDS + CSHARP_KEYWORDS + JSCRIPT_KEYWORDS + PERL_KEYWORDS +
+    PYTHON_KEYWORDS + RUBY_KEYWORDS + SH_KEYWORDS);
 
   // token style names.  correspond to css classes
   /** token style for a string literal */
@@ -192,30 +192,30 @@ window['_pr_isIE6'] = function () {
     * @private
     */
   var REGEXP_PRECEDER_PATTERN = function () {
-      var preceders = [
-          "!", "!=", "!==", "#", "%", "%=", "&", "&&", "&&=",
-          "&=", "(", "*", "*=", /* "+", */ "+=", ",", /* "-", */ "-=",
-          "->", /*".", "..", "...", handled below */ "/", "/=", ":", "::", ";",
-          "<", "<<", "<<=", "<=", "=", "==", "===", ">",
-          ">=", ">>", ">>=", ">>>", ">>>=", "?", "@", "[",
-          "^", "^=", "^^", "^^=", "{", "|", "|=", "||",
-          "||=", "~" /* handles =~ and !~ */,
-          "break", "case", "continue", "delete",
-          "do", "else", "finally", "instanceof",
-          "return", "throw", "try", "typeof"
-          ];
-      var pattern = '(?:^^|[+-]';
-      for (var i = 0; i < preceders.length; ++i) {
-        pattern += '|' + preceders[i].replace(/([^=<>:&a-z])/g, '\\$1');
-      }
-      pattern += ')\\s*';  // matches at end, and matches empty string
-      return pattern;
-      // CAVEAT: this does not properly handle the case where a regular
-      // expression immediately follows another since a regular expression may
-      // have flags for case-sensitivity and the like.  Having regexp tokens
-      // adjacent is not valid in any language I'm aware of, so I'm punting.
-      // TODO: maybe style special characters inside a regexp as punctuation.
-    }();
+    var preceders = [
+      "!", "!=", "!==", "#", "%", "%=", "&", "&&", "&&=",
+      "&=", "(", "*", "*=", /* "+", */ "+=", ",", /* "-", */ "-=",
+      "->", /*".", "..", "...", handled below */ "/", "/=", ":", "::", ";",
+      "<", "<<", "<<=", "<=", "=", "==", "===", ">",
+      ">=", ">>", ">>=", ">>>", ">>>=", "?", "@", "[",
+      "^", "^=", "^^", "^^=", "{", "|", "|=", "||",
+      "||=", "~" /* handles =~ and !~ */,
+      "break", "case", "continue", "delete",
+      "do", "else", "finally", "instanceof",
+      "return", "throw", "try", "typeof"
+    ];
+    var pattern = '(?:^^|[+-]';
+    for (var i = 0; i < preceders.length; ++i) {
+      pattern += '|' + preceders[i].replace(/([^=<>:&a-z])/g, '\\$1');
+    }
+    pattern += ')\\s*';  // matches at end, and matches empty string
+    return pattern;
+    // CAVEAT: this does not properly handle the case where a regular
+    // expression immediately follows another since a regular expression may
+    // have flags for case-sensitivity and the like.  Having regexp tokens
+    // adjacent is not valid in any language I'm aware of, so I'm punting.
+    // TODO: maybe style special characters inside a regexp as punctuation.
+  }();
 
   // Define regexps here so that the interpreter doesn't have to create an
   // object each time the function containing them is called.
@@ -228,16 +228,16 @@ window['_pr_isIE6'] = function () {
   /** like textToHtml but escapes double quotes to be attribute safe. */
   function attribToHtml(str) {
     return str.replace(pr_amp, '&amp;')
-        .replace(pr_lt, '&lt;')
-        .replace(pr_gt, '&gt;')
-        .replace(pr_quot, '&quot;');
+      .replace(pr_lt, '&lt;')
+      .replace(pr_gt, '&gt;')
+      .replace(pr_quot, '&quot;');
   }
 
   /** escapest html special characters to html. */
   function textToHtml(str) {
     return str.replace(pr_amp, '&amp;')
-        .replace(pr_lt, '&lt;')
-        .replace(pr_gt, '&gt;');
+      .replace(pr_lt, '&lt;')
+      .replace(pr_gt, '&gt;');
   }
 
 
@@ -266,17 +266,17 @@ window['_pr_isIE6'] = function () {
         var codePoint = parseInt(num, radix);
         if (!isNaN(codePoint)) {
           html = (html.substring(0, pos) + String.fromCharCode(codePoint) +
-                  html.substring(end + 1));
+            html.substring(end + 1));
         }
       }
     }
 
     return html.replace(pr_ltEnt, '<')
-        .replace(pr_gtEnt, '>')
-        .replace(pr_aposEnt, "'")
-        .replace(pr_quotEnt, '"')
-        .replace(pr_nbspEnt, ' ')
-        .replace(pr_ampEnt, '&');
+      .replace(pr_gtEnt, '>')
+      .replace(pr_aposEnt, "'")
+      .replace(pr_quotEnt, '"')
+      .replace(pr_nbspEnt, ' ')
+      .replace(pr_ampEnt, '&');
   }
 
   /** is the given node's innerHTML normally unescaped? */
@@ -318,15 +318,15 @@ window['_pr_isIE6'] = function () {
             var sortedAttrs = [];
             for (var i = n; --i >= 0;) { sortedAttrs[i] = attrs[i]; }
             sortedAttrs.sort(function (a, b) {
-                return (a.name < b.name) ? -1 : a.name === b.name ? 0 : 1;
-              });
+              return (a.name < b.name) ? -1 : a.name === b.name ? 0 : 1;
+            });
             attrs = sortedAttrs;
           }
           for (var i = 0; i < n; ++i) {
             var attr = attrs[i];
             if (!attr.specified) { continue; }
             out.push(' ', attr.name.toLowerCase(),
-                     '="', attribToHtml(attr.value), '"');
+              '="', attribToHtml(attr.value), '"');
           }
         }
         out.push('>');
@@ -361,7 +361,7 @@ window['_pr_isIE6'] = function () {
       if (regex.ignoreCase) {
         ignoreCase = true;
       } else if (/[a-z]/i.test(regex.source.replace(
-                     /\\u[0-9a-f]{4}|\\x[0-9a-f]{2}|\\[^ux]/gi, ''))) {
+        /\\u[0-9a-f]{4}|\\x[0-9a-f]{2}|\\[^ux]/gi, ''))) {
         needToFoldCase = true;
         ignoreCase = false;
         break;
@@ -379,7 +379,7 @@ window['_pr_isIE6'] = function () {
         case 'r': return 0xd;
         case 'u': case 'x':
           return parseInt(charsetPart.substring(2), 16)
-              || charsetPart.charCodeAt(1);
+            || charsetPart.charCodeAt(1);
         case '0': case '1': case '2': case '3': case '4':
         case '5': case '6': case '7':
           return parseInt(charsetPart.substring(1), 8);
@@ -400,15 +400,15 @@ window['_pr_isIE6'] = function () {
 
     function caseFoldCharset(charSet) {
       var charsetParts = charSet.substring(1, charSet.length - 1).match(
-          new RegExp(
-              '\\\\u[0-9A-Fa-f]{4}'
-              + '|\\\\x[0-9A-Fa-f]{2}'
-              + '|\\\\[0-3][0-7]{0,2}'
-              + '|\\\\[0-7]{1,2}'
-              + '|\\\\[\\s\\S]'
-              + '|-'
-              + '|[^-\\\\]',
-              'g'));
+        new RegExp(
+          '\\\\u[0-9A-Fa-f]{4}'
+          + '|\\\\x[0-9A-Fa-f]{2}'
+          + '|\\\\[0-3][0-7]{0,2}'
+          + '|\\\\[0-7]{1,2}'
+          + '|\\\\[\\s\\S]'
+          + '|-'
+          + '|[^-\\\\]',
+          'g'));
       var groups = [];
       var ranges = [];
       var inverse = charsetParts[0] === '^';
@@ -444,7 +444,7 @@ window['_pr_isIE6'] = function () {
 
       // [[1, 10], [3, 4], [8, 12], [14, 14], [16, 16], [17, 17]]
       // -> [[1, 12], [14, 14], [16, 17]]
-      ranges.sort(function (a, b) { return (a[0] - b[0]) || (b[1]  - a[1]); });
+      ranges.sort(function (a, b) { return (a[0] - b[0]) || (b[1] - a[1]); });
       var consolidatedRanges = [];
       var lastRange = [NaN, NaN];
       for (var i = 0; i < ranges.length; ++i) {
@@ -476,18 +476,18 @@ window['_pr_isIE6'] = function () {
       // like ('(', '(?:', ')', '^'), and runs of characters that do not
       // include any of the above.
       var parts = regex.source.match(
-          new RegExp(
-              '(?:'
-              + '\\[(?:[^\\x5C\\x5D]|\\\\[\\s\\S])*\\]'  // a character set
-              + '|\\\\u[A-Fa-f0-9]{4}'  // a unicode escape
-              + '|\\\\x[A-Fa-f0-9]{2}'  // a hex escape
-              + '|\\\\[0-9]+'  // a back-reference or octal escape
-              + '|\\\\[^ux0-9]'  // other escape sequence
-              + '|\\(\\?[:!=]'  // start of a non-capturing group
-              + '|[\\(\\)\\^]'  // start/emd of a group, or line start
-              + '|[^\\x5B\\x5C\\(\\)\\^]+'  // run of other characters
-              + ')',
-              'g'));
+        new RegExp(
+          '(?:'
+          + '\\[(?:[^\\x5C\\x5D]|\\\\[\\s\\S])*\\]'  // a character set
+          + '|\\\\u[A-Fa-f0-9]{4}'  // a unicode escape
+          + '|\\\\x[A-Fa-f0-9]{2}'  // a hex escape
+          + '|\\\\[0-9]+'  // a back-reference or octal escape
+          + '|\\\\[^ux0-9]'  // other escape sequence
+          + '|\\(\\?[:!=]'  // start of a non-capturing group
+          + '|[\\(\\)\\^]'  // start/emd of a group, or line start
+          + '|[^\\x5B\\x5C\\(\\)\\^]+'  // run of other characters
+          + ')',
+          'g'));
       var n = parts.length;
 
       // Maps captured group numbers to the number they will occupy in
@@ -549,11 +549,11 @@ window['_pr_isIE6'] = function () {
           } else if (ch0 !== '\\') {
             // TODO: handle letters in numeric escapes.
             parts[i] = p.replace(
-                /[a-zA-Z]/g,
-                function (ch) {
-                  var cc = ch.charCodeAt(0);
-                  return '[' + String.fromCharCode(cc & ~32, cc | 32) + ']';
-                });
+              /[a-zA-Z]/g,
+              function (ch) {
+                var cc = ch.charCodeAt(0);
+                return '[' + String.fromCharCode(cc & ~32, cc | 32) + ']';
+              });
           }
         }
       }
@@ -566,7 +566,7 @@ window['_pr_isIE6'] = function () {
       var regex = regexs[i];
       if (regex.global || regex.multiline) { throw new Error('' + regex); }
       rewritten.push(
-          '(?:' + allowAnywhereFoldCaseAndRenumberGroups(regex) + ')');
+        '(?:' + allowAnywhereFoldCaseAndRenumberGroups(regex) + ')');
     }
 
     return new RegExp(rewritten.join('|'), ignoreCase ? 'gi' : 'g');
@@ -580,7 +580,7 @@ window['_pr_isIE6'] = function () {
     if (null === PR_innerHtmlWorks) {
       var testNode = document.createElement('PRE');
       testNode.appendChild(
-          document.createTextNode('<!DOCTYPE foo PUBLIC "foo bar">\n<foo />'));
+        document.createTextNode('<!DOCTYPE foo PUBLIC "foo bar">\n<foo />'));
       PR_innerHtmlWorks = !/</.test(testNode.innerHTML);
     }
 
@@ -591,7 +591,7 @@ window['_pr_isIE6'] = function () {
         content = textToHtml(content);
       } else if (!isPreformatted(node, content)) {
         content = content.replace(/(<br\s*\/?>)[\r\n]+/g, '$1')
-            .replace(/(?:[\r\n]+[ \t]*)+/g, ' ');
+          .replace(/(?:[\r\n]+[ \t]*)+/g, ' ');
       }
       return content;
     }
@@ -652,13 +652,13 @@ window['_pr_isIE6'] = function () {
   }
 
   var pr_chunkPattern = new RegExp(
-      '[^<]+'  // A run of characters other than '<'
-      + '|<\!--[\\s\\S]*?--\>'  // an HTML comment
-      + '|<!\\[CDATA\\[[\\s\\S]*?\\]\\]>'  // a CDATA section
-      // a probable tag that should not be highlighted
-      + '|<\/?[a-zA-Z](?:[^>\"\']|\'[^\']*\'|\"[^\"]*\")*>'
-      + '|<',  // A '<' that does not begin a larger chunk
-      'g');
+    '[^<]+'  // A run of characters other than '<'
+    + '|<\!--[\\s\\S]*?--\>'  // an HTML comment
+    + '|<!\\[CDATA\\[[\\s\\S]*?\\]\\]>'  // a CDATA section
+    // a probable tag that should not be highlighted
+    + '|<\/?[a-zA-Z](?:[^>\"\']|\'[^\']*\'|\"[^\"]*\")*>'
+    + '|<',  // A '<' that does not begin a larger chunk
+    'g');
   var pr_commentPrefix = /^<\!--/;
   var pr_cdataPrefix = /^<!\[CDATA\[/;
   var pr_brPrefix = /^<br\b/i;
@@ -715,7 +715,7 @@ window['_pr_isIE6'] = function () {
               }
               if (j < n) {
                 extractedTags.push(
-                    sourceBufLen, matches.slice(i, j + 1).join(''));
+                  sourceBufLen, matches.slice(i, j + 1).join(''));
                 i = j;
               } else {  // Ignore unclosed sections.
                 extractedTags.push(sourceBufLen, match);
@@ -737,11 +737,11 @@ window['_pr_isIE6'] = function () {
   /** True if the given tag contains a class attribute with the nocode class. */
   function isNoCodeTag(tag) {
     return !!tag
-        // First canonicalize the representation of attributes
-        .replace(/\s(\w+)\s*=\s*(?:\"([^\"]*)\"|'([^\']*)'|(\S+))/g,
-                 ' $1="$2$3$4"')
-        // Then look for the attribute we want.
-        .match(/[cC][lL][aA][sS][sS]=\"[^\"]*\bnocode\b/);
+      // First canonicalize the representation of attributes
+      .replace(/\s(\w+)\s*=\s*(?:\"([^\"]*)\"|'([^\']*)'|(\S+))/g,
+        ' $1="$2$3$4"')
+      // Then look for the attribute we want.
+      .match(/[cC][lL][aA][sS][sS]=\"[^\"]*\bnocode\b/);
   }
 
   /**
@@ -914,20 +914,20 @@ window['_pr_isIE6'] = function () {
           var lang = style.substring(5);
           // Decorate the left of the embedded source
           appendDecorations(
-              basePos + tokenStart,
-              token.substring(0, embeddedSourceStart),
-              decorate, decorations);
+            basePos + tokenStart,
+            token.substring(0, embeddedSourceStart),
+            decorate, decorations);
           // Decorate the embedded source
           appendDecorations(
-              basePos + tokenStart + embeddedSourceStart,
-              embeddedSource,
-              langHandlerForExtension(lang, embeddedSource),
-              decorations);
+            basePos + tokenStart + embeddedSourceStart,
+            embeddedSource,
+            langHandlerForExtension(lang, embeddedSource),
+            decorations);
           // Decorate the right of the embedded section
           appendDecorations(
-              basePos + tokenStart + embeddedSourceEnd,
-              token.substring(embeddedSourceEnd),
-              decorate, decorations);
+            basePos + tokenStart + embeddedSourceEnd,
+            token.substring(embeddedSourceEnd),
+            decorate, decorations);
         }
       }
       job.decorations = decorations;
@@ -955,35 +955,35 @@ window['_pr_isIE6'] = function () {
     if (options['tripleQuotedStrings']) {
       // '''multi-line-string''', 'single-line-string', and double-quoted
       shortcutStylePatterns.push(
-          [PR_STRING,  /^(?:\'\'\'(?:[^\'\\]|\\[\s\S]|\'{1,2}(?=[^\']))*(?:\'\'\'|$)|\"\"\"(?:[^\"\\]|\\[\s\S]|\"{1,2}(?=[^\"]))*(?:\"\"\"|$)|\'(?:[^\\\']|\\[\s\S])*(?:\'|$)|\"(?:[^\\\"]|\\[\s\S])*(?:\"|$))/,
-           null, '\'"']);
+        [PR_STRING, /^(?:\'\'\'(?:[^\'\\]|\\[\s\S]|\'{1,2}(?=[^\']))*(?:\'\'\'|$)|\"\"\"(?:[^\"\\]|\\[\s\S]|\"{1,2}(?=[^\"]))*(?:\"\"\"|$)|\'(?:[^\\\']|\\[\s\S])*(?:\'|$)|\"(?:[^\\\"]|\\[\s\S])*(?:\"|$))/,
+          null, '\'"']);
     } else if (options['multiLineStrings']) {
       // 'multi-line-string', "multi-line-string"
       shortcutStylePatterns.push(
-          [PR_STRING,  /^(?:\'(?:[^\\\']|\\[\s\S])*(?:\'|$)|\"(?:[^\\\"]|\\[\s\S])*(?:\"|$)|\`(?:[^\\\`]|\\[\s\S])*(?:\`|$))/,
-           null, '\'"`']);
+        [PR_STRING, /^(?:\'(?:[^\\\']|\\[\s\S])*(?:\'|$)|\"(?:[^\\\"]|\\[\s\S])*(?:\"|$)|\`(?:[^\\\`]|\\[\s\S])*(?:\`|$))/,
+          null, '\'"`']);
     } else {
       // 'single-line-string', "single-line-string"
       shortcutStylePatterns.push(
-          [PR_STRING,
-           /^(?:\'(?:[^\\\'\r\n]|\\.)*(?:\'|$)|\"(?:[^\\\"\r\n]|\\.)*(?:\"|$))/,
-           null, '"\'']);
+        [PR_STRING,
+          /^(?:\'(?:[^\\\'\r\n]|\\.)*(?:\'|$)|\"(?:[^\\\"\r\n]|\\.)*(?:\"|$))/,
+          null, '"\'']);
     }
     if (options['verbatimStrings']) {
       // verbatim-string-literal production from the C# grammar.  See issue 93.
       fallthroughStylePatterns.push(
-          [PR_STRING, /^@\"(?:[^\"]|\"\")*(?:\"|$)/, null]);
+        [PR_STRING, /^@\"(?:[^\"]|\"\")*(?:\"|$)/, null]);
     }
     if (options['hashComments']) {
       if (options['cStyleComments']) {
         // Stop C preprocessor declarations at an unclosed open comment
         shortcutStylePatterns.push(
-            [PR_COMMENT, /^#(?:(?:define|elif|else|endif|error|ifdef|include|ifndef|line|pragma|undef|warning)\b|[^\r\n]*)/,
-             null, '#']);
+          [PR_COMMENT, /^#(?:(?:define|elif|else|endif|error|ifdef|include|ifndef|line|pragma|undef|warning)\b|[^\r\n]*)/,
+            null, '#']);
         fallthroughStylePatterns.push(
-            [PR_STRING,
-             /^<(?:(?:(?:\.\.\/)*|\/?)(?:[\w-]+(?:\/[\w-]+)+)?[\w-]+\.h|[a-z]\w*)>/,
-             null]);
+          [PR_STRING,
+            /^<(?:(?:(?:\.\.\/)*|\/?)(?:[\w-]+(?:\/[\w-]+)+)?[\w-]+\.h|[a-z]\w*)>/,
+            null]);
       } else {
         shortcutStylePatterns.push([PR_COMMENT, /^#[^\r\n]*/, null, '#']);
       }
@@ -991,66 +991,66 @@ window['_pr_isIE6'] = function () {
     if (options['cStyleComments']) {
       fallthroughStylePatterns.push([PR_COMMENT, /^\/\/[^\r\n]*/, null]);
       fallthroughStylePatterns.push(
-          [PR_COMMENT, /^\/\*[\s\S]*?(?:\*\/|$)/, null]);
+        [PR_COMMENT, /^\/\*[\s\S]*?(?:\*\/|$)/, null]);
     }
     if (options['regexLiterals']) {
       var REGEX_LITERAL = (
-          // A regular expression literal starts with a slash that is
-          // not followed by * or / so that it is not confused with
-          // comments.
-          '/(?=[^/*])'
-          // and then contains any number of raw characters,
-          + '(?:[^/\\x5B\\x5C]'
-          // escape sequences (\x5C),
-          +    '|\\x5C[\\s\\S]'
-          // or non-nesting character sets (\x5B\x5D);
-          +    '|\\x5B(?:[^\\x5C\\x5D]|\\x5C[\\s\\S])*(?:\\x5D|$))+'
-          // finally closed by a /.
-          + '/');
+        // A regular expression literal starts with a slash that is
+        // not followed by * or / so that it is not confused with
+        // comments.
+        '/(?=[^/*])'
+        // and then contains any number of raw characters,
+        + '(?:[^/\\x5B\\x5C]'
+        // escape sequences (\x5C),
+        + '|\\x5C[\\s\\S]'
+        // or non-nesting character sets (\x5B\x5D);
+        + '|\\x5B(?:[^\\x5C\\x5D]|\\x5C[\\s\\S])*(?:\\x5D|$))+'
+        // finally closed by a /.
+        + '/');
       fallthroughStylePatterns.push(
-          ['lang-regex',
-           new RegExp('^' + REGEXP_PRECEDER_PATTERN + '(' + REGEX_LITERAL + ')')
-           ]);
+        ['lang-regex',
+          new RegExp('^' + REGEXP_PRECEDER_PATTERN + '(' + REGEX_LITERAL + ')')
+        ]);
     }
 
     var keywords = options['keywords'].replace(/^\s+|\s+$/g, '');
     if (keywords.length) {
       fallthroughStylePatterns.push(
-          [PR_KEYWORD,
-           new RegExp('^(?:' + keywords.replace(/\s+/g, '|') + ')\\b'), null]);
+        [PR_KEYWORD,
+          new RegExp('^(?:' + keywords.replace(/\s+/g, '|') + ')\\b'), null]);
     }
 
-    shortcutStylePatterns.push([PR_PLAIN,       /^\s+/, null, ' \r\n\t\xA0']);
+    shortcutStylePatterns.push([PR_PLAIN, /^\s+/, null, ' \r\n\t\xA0']);
     fallthroughStylePatterns.push(
-        // TODO(mikesamuel): recognize non-latin letters and numerals in idents
-        [PR_LITERAL,     /^@[a-z_$][a-z_$@0-9]*/i, null],
-        [PR_TYPE,        /^@?[A-Z]+[a-z][A-Za-z_$@0-9]*/, null],
-        [PR_PLAIN,       /^[a-z_$][a-z_$@0-9]*/i, null],
-        [PR_LITERAL,
-         new RegExp(
-             '^(?:'
-             // A hex number
-             + '0x[a-f0-9]+'
-             // or an octal or decimal number,
-             + '|(?:\\d(?:_\\d+)*\\d*(?:\\.\\d*)?|\\.\\d\\+)'
-             // possibly in scientific notation
-             + '(?:e[+\\-]?\\d+)?'
-             + ')'
-             // with an optional modifier like UL for unsigned long
-             + '[a-z]*', 'i'),
-         null, '0123456789'],
-        [PR_PUNCTUATION, /^.[^\s\w\.$@\'\"\`\/\#]*/, null]);
+      // TODO(mikesamuel): recognize non-latin letters and numerals in idents
+      [PR_LITERAL, /^@[a-z_$][a-z_$@0-9]*/i, null],
+      [PR_TYPE, /^@?[A-Z]+[a-z][A-Za-z_$@0-9]*/, null],
+      [PR_PLAIN, /^[a-z_$][a-z_$@0-9]*/i, null],
+      [PR_LITERAL,
+        new RegExp(
+          '^(?:'
+          // A hex number
+          + '0x[a-f0-9]+'
+          // or an octal or decimal number,
+          + '|(?:\\d(?:_\\d+)*\\d*(?:\\.\\d*)?|\\.\\d\\+)'
+          // possibly in scientific notation
+          + '(?:e[+\\-]?\\d+)?'
+          + ')'
+          // with an optional modifier like UL for unsigned long
+          + '[a-z]*', 'i'),
+        null, '0123456789'],
+      [PR_PUNCTUATION, /^.[^\s\w\.$@\'\"\`\/\#]*/, null]);
 
     return createSimpleLexer(shortcutStylePatterns, fallthroughStylePatterns);
   }
 
   var decorateSource = sourceDecorator({
-        'keywords': ALL_KEYWORDS,
-        'hashComments': true,
-        'cStyleComments': true,
-        'multiLineStrings': true,
-        'regexLiterals': true
-      });
+    'keywords': ALL_KEYWORDS,
+    'hashComments': true,
+    'cStyleComments': true,
+    'multiLineStrings': true,
+    'regexLiterals': true
+  });
 
   /** Breaks {@code job.source} around style boundaries in
     * {@code job.decorations} while re-interleaving {@code job.extractedTags},
@@ -1089,18 +1089,18 @@ window['_pr_isIE6'] = function () {
     // See bug 71 and http://stackoverflow.com/questions/136443/why-doesnt-ie7-
     var isIE678 = window['_pr_isIE6']();
     var lineBreakHtml = (
-        isIE678
+      isIE678
         ? (job.sourceNode.tagName === 'PRE'
-           // Use line feeds instead of <br>s so that copying and pasting works
-           // on IE.
-           // Doing this on other browsers breaks lots of stuff since \r\n is
-           // treated as two newlines on Firefox.
-           ? (isIE678 === 6 ? '&#160;\r\n' :
-              isIE678 === 7 ? '&#160;<br>\r' : '&#160;\r')
-           // IE collapses multiple adjacent <br>s into 1 line break.
-           // Prefix every newline with '&#160;' to prevent such behavior.
-           // &nbsp; is the same as &#160; but works in XML as well as HTML.
-           : '&#160;<br />')
+          // Use line feeds instead of <br>s so that copying and pasting works
+          // on IE.
+          // Doing this on other browsers breaks lots of stuff since \r\n is
+          // treated as two newlines on Firefox.
+          ? (isIE678 === 6 ? '&#160;\r\n' :
+            isIE678 === 7 ? '&#160;<br>\r' : '&#160;\r')
+          // IE collapses multiple adjacent <br>s into 1 line break.
+          // Prefix every newline with '&#160;' to prevent such behavior.
+          // &nbsp; is the same as &#160; but works in XML as well as HTML.
+          : '&#160;<br />')
         : '<br />');
 
     // Look for a class like linenums or linenums:<n> where <n> is the 1-indexed
@@ -1113,7 +1113,7 @@ window['_pr_isIE6'] = function () {
         lineBreaks[i] = lineBreakHtml + '</li><li class="L' + i + '">';
       }
       var lineNum = numberLines[1] && numberLines[1].length
-          ? numberLines[1] - 1 : 0;  // Lines are 1-indexed
+        ? numberLines[1] - 1 : 0;  // Lines are 1-indexed
       html.push('<ol class="linenums"><li class="L', (lineNum) % 10, '"');
       if (lineNum) {
         html.push(' value="', lineNum + 1, '"');
@@ -1124,7 +1124,7 @@ window['_pr_isIE6'] = function () {
         // If a decoration is open, we need to close it before closing a list-item
         // and reopen it on the other side of the list item.
         return openDecoration
-            ? ('</span>' + lb + '<span class="' + openDecoration + '">') : lb;
+          ? ('</span>' + lb + '<span class="' + openDecoration + '">') : lb;
       };
     } else {
       lineBreaker = lineBreakHtml;
@@ -1151,10 +1151,10 @@ window['_pr_isIE6'] = function () {
         // and it serves to undo the conversion of <br>s to newlines done in
         // chunkify.
         var htmlChunk = textToHtml(
-            tabExpander(sourceText.substring(outputIdx, sourceIdx)))
-            .replace(lastWasSpace
-                     ? startOrSpaceRe
-                     : adjacentSpaceRe, '$1&#160;');
+          tabExpander(sourceText.substring(outputIdx, sourceIdx)))
+          .replace(lastWasSpace
+            ? startOrSpaceRe
+            : adjacentSpaceRe, '$1&#160;');
         // Keep track of whether we need to escape space at the beginning of the
         // next chunk.
         lastWasSpace = trailingSpaceRe.test(htmlChunk);
@@ -1238,100 +1238,100 @@ window['_pr_isIE6'] = function () {
       // Treat it as markup if the first non whitespace character is a < and
       // the last non-whitespace character is a >.
       extension = /^\s*</.test(source)
-          ? 'default-markup'
-          : 'default-code';
+        ? 'default-markup'
+        : 'default-code';
     }
     return langHandlerRegistry[extension];
   }
   registerLangHandler(decorateSource, ['default-code']);
   registerLangHandler(
-      createSimpleLexer(
-          [],
-          [
-           [PR_PLAIN,       /^[^<?]+/],
-           [PR_DECLARATION, /^<!\w[^>]*(?:>|$)/],
-           [PR_COMMENT,     /^<\!--[\s\S]*?(?:-\->|$)/],
-           // Unescaped content in an unknown language
-           ['lang-',        /^<\?([\s\S]+?)(?:\?>|$)/],
-           ['lang-',        /^<%([\s\S]+?)(?:%>|$)/],
-           [PR_PUNCTUATION, /^(?:<[%?]|[%?]>)/],
-           ['lang-',        /^<xmp\b[^>]*>([\s\S]+?)<\/xmp\b[^>]*>/i],
-           // Unescaped content in javascript.  (Or possibly vbscript).
-           ['lang-js',      /^<script\b[^>]*>([\s\S]*?)(<\/script\b[^>]*>)/i],
-           // Contains unescaped stylesheet content
-           ['lang-css',     /^<style\b[^>]*>([\s\S]*?)(<\/style\b[^>]*>)/i],
-           ['lang-in.tag',  /^(<\/?[a-z][^<>]*>)/i]
-          ]),
-      ['default-markup', 'htm', 'html', 'mxml', 'xhtml', 'xml', 'xsl']);
+    createSimpleLexer(
+      [],
+      [
+        [PR_PLAIN, /^[^<?]+/],
+        [PR_DECLARATION, /^<!\w[^>]*(?:>|$)/],
+        [PR_COMMENT, /^<\!--[\s\S]*?(?:-\->|$)/],
+        // Unescaped content in an unknown language
+        ['lang-', /^<\?([\s\S]+?)(?:\?>|$)/],
+        ['lang-', /^<%([\s\S]+?)(?:%>|$)/],
+        [PR_PUNCTUATION, /^(?:<[%?]|[%?]>)/],
+        ['lang-', /^<xmp\b[^>]*>([\s\S]+?)<\/xmp\b[^>]*>/i],
+        // Unescaped content in javascript.  (Or possibly vbscript).
+        ['lang-js', /^<script\b[^>]*>([\s\S]*?)(<\/script\b[^>]*>)/i],
+        // Contains unescaped stylesheet content
+        ['lang-css', /^<style\b[^>]*>([\s\S]*?)(<\/style\b[^>]*>)/i],
+        ['lang-in.tag', /^(<\/?[a-z][^<>]*>)/i]
+      ]),
+    ['default-markup', 'htm', 'html', 'mxml', 'xhtml', 'xml', 'xsl']);
   registerLangHandler(
-      createSimpleLexer(
-          [
-           [PR_PLAIN,        /^[\s]+/, null, ' \t\r\n'],
-           [PR_ATTRIB_VALUE, /^(?:\"[^\"]*\"?|\'[^\']*\'?)/, null, '\"\'']
-           ],
-          [
-           [PR_TAG,          /^^<\/?[a-z](?:[\w.:-]*\w)?|\/?>$/i],
-           [PR_ATTRIB_NAME,  /^(?!style[\s=]|on)[a-z](?:[\w:-]*\w)?/i],
-           ['lang-uq.val',   /^=\s*([^>\'\"\s]*(?:[^>\'\"\s\/]|\/(?=\s)))/],
-           [PR_PUNCTUATION,  /^[=<>\/]+/],
-           ['lang-js',       /^on\w+\s*=\s*\"([^\"]+)\"/i],
-           ['lang-js',       /^on\w+\s*=\s*\'([^\']+)\'/i],
-           ['lang-js',       /^on\w+\s*=\s*([^\"\'>\s]+)/i],
-           ['lang-css',      /^style\s*=\s*\"([^\"]+)\"/i],
-           ['lang-css',      /^style\s*=\s*\'([^\']+)\'/i],
-           ['lang-css',      /^style\s*=\s*([^\"\'>\s]+)/i]
-           ]),
-      ['in.tag']);
+    createSimpleLexer(
+      [
+        [PR_PLAIN, /^[\s]+/, null, ' \t\r\n'],
+        [PR_ATTRIB_VALUE, /^(?:\"[^\"]*\"?|\'[^\']*\'?)/, null, '\"\'']
+      ],
+      [
+        [PR_TAG, /^^<\/?[a-z](?:[\w.:-]*\w)?|\/?>$/i],
+        [PR_ATTRIB_NAME, /^(?!style[\s=]|on)[a-z](?:[\w:-]*\w)?/i],
+        ['lang-uq.val', /^=\s*([^>\'\"\s]*(?:[^>\'\"\s\/]|\/(?=\s)))/],
+        [PR_PUNCTUATION, /^[=<>\/]+/],
+        ['lang-js', /^on\w+\s*=\s*\"([^\"]+)\"/i],
+        ['lang-js', /^on\w+\s*=\s*\'([^\']+)\'/i],
+        ['lang-js', /^on\w+\s*=\s*([^\"\'>\s]+)/i],
+        ['lang-css', /^style\s*=\s*\"([^\"]+)\"/i],
+        ['lang-css', /^style\s*=\s*\'([^\']+)\'/i],
+        ['lang-css', /^style\s*=\s*([^\"\'>\s]+)/i]
+      ]),
+    ['in.tag']);
   registerLangHandler(
-      createSimpleLexer([], [[PR_ATTRIB_VALUE, /^[\s\S]+/]]), ['uq.val']);
+    createSimpleLexer([], [[PR_ATTRIB_VALUE, /^[\s\S]+/]]), ['uq.val']);
   registerLangHandler(sourceDecorator({
-          'keywords': CPP_KEYWORDS,
-          'hashComments': true,
-          'cStyleComments': true
-        }), ['c', 'cc', 'cpp', 'cxx', 'cyc', 'm']);
+    'keywords': CPP_KEYWORDS,
+    'hashComments': true,
+    'cStyleComments': true
+  }), ['c', 'cc', 'cpp', 'cxx', 'cyc', 'm']);
   registerLangHandler(sourceDecorator({
-          'keywords': 'null true false'
-        }), ['json']);
+    'keywords': 'null true false'
+  }), ['json']);
   registerLangHandler(sourceDecorator({
-          'keywords': CSHARP_KEYWORDS,
-          'hashComments': true,
-          'cStyleComments': true,
-          'verbatimStrings': true
-        }), ['cs']);
+    'keywords': CSHARP_KEYWORDS,
+    'hashComments': true,
+    'cStyleComments': true,
+    'verbatimStrings': true
+  }), ['cs']);
   registerLangHandler(sourceDecorator({
-          'keywords': JAVA_KEYWORDS,
-          'cStyleComments': true
-        }), ['java']);
+    'keywords': JAVA_KEYWORDS,
+    'cStyleComments': true
+  }), ['java']);
   registerLangHandler(sourceDecorator({
-          'keywords': SH_KEYWORDS,
-          'hashComments': true,
-          'multiLineStrings': true
-        }), ['bsh', 'csh', 'sh']);
+    'keywords': SH_KEYWORDS,
+    'hashComments': true,
+    'multiLineStrings': true
+  }), ['bsh', 'csh', 'sh']);
   registerLangHandler(sourceDecorator({
-          'keywords': PYTHON_KEYWORDS,
-          'hashComments': true,
-          'multiLineStrings': true,
-          'tripleQuotedStrings': true
-        }), ['cv', 'py']);
+    'keywords': PYTHON_KEYWORDS,
+    'hashComments': true,
+    'multiLineStrings': true,
+    'tripleQuotedStrings': true
+  }), ['cv', 'py']);
   registerLangHandler(sourceDecorator({
-          'keywords': PERL_KEYWORDS,
-          'hashComments': true,
-          'multiLineStrings': true,
-          'regexLiterals': true
-        }), ['perl', 'pl', 'pm']);
+    'keywords': PERL_KEYWORDS,
+    'hashComments': true,
+    'multiLineStrings': true,
+    'regexLiterals': true
+  }), ['perl', 'pl', 'pm']);
   registerLangHandler(sourceDecorator({
-          'keywords': RUBY_KEYWORDS,
-          'hashComments': true,
-          'multiLineStrings': true,
-          'regexLiterals': true
-        }), ['rb']);
+    'keywords': RUBY_KEYWORDS,
+    'hashComments': true,
+    'multiLineStrings': true,
+    'regexLiterals': true
+  }), ['rb']);
   registerLangHandler(sourceDecorator({
-          'keywords': JSCRIPT_KEYWORDS,
-          'cStyleComments': true,
-          'regexLiterals': true
-        }), ['js']);
+    'keywords': JSCRIPT_KEYWORDS,
+    'cStyleComments': true,
+    'regexLiterals': true
+  }), ['js']);
   registerLangHandler(
-      createSimpleLexer([], [[PR_STRING, /^[\s\S]+/]]), ['regex']);
+    createSimpleLexer([], [[PR_STRING, /^[\s\S]+/]]), ['regex']);
 
   function applyDecorator(job) {
     var sourceCodeHtml = job.sourceCodeHtml;
@@ -1399,8 +1399,8 @@ window['_pr_isIE6'] = function () {
 
     function doWork() {
       var endTime = (window['PR_SHOULD_USE_CONTINUATION'] ?
-                     clock.now() + 250 /* ms */ :
-                     Infinity);
+        clock.now() + 250 /* ms */ :
+        Infinity);
       for (; k < elements.length && clock.now() < endTime; k++) {
         var cs = elements[k];
         // [JACOCO] 'prettyprint' -> 'source'
@@ -1417,9 +1417,9 @@ window['_pr_isIE6'] = function () {
           var nested = false;
           for (var p = cs.parentNode; p; p = p.parentNode) {
             if ((p.tagName === 'pre' || p.tagName === 'code' ||
-                 p.tagName === 'xmp') &&
-                // [JACOCO] 'prettyprint' -> 'source'
-                p.className && p.className.indexOf('source') >= 0) {
+              p.tagName === 'xmp') &&
+              // [JACOCO] 'prettyprint' -> 'source'
+              p.className && p.className.indexOf('source') >= 0) {
               nested = true;
               break;
             }
@@ -1489,22 +1489,22 @@ window['_pr_isIE6'] = function () {
   window['prettyPrintOne'] = prettyPrintOne;
   window['prettyPrint'] = prettyPrint;
   window['PR'] = {
-        'combinePrefixPatterns': combinePrefixPatterns,
-        'createSimpleLexer': createSimpleLexer,
-        'registerLangHandler': registerLangHandler,
-        'sourceDecorator': sourceDecorator,
-        'PR_ATTRIB_NAME': PR_ATTRIB_NAME,
-        'PR_ATTRIB_VALUE': PR_ATTRIB_VALUE,
-        'PR_COMMENT': PR_COMMENT,
-        'PR_DECLARATION': PR_DECLARATION,
-        'PR_KEYWORD': PR_KEYWORD,
-        'PR_LITERAL': PR_LITERAL,
-        'PR_NOCODE': PR_NOCODE,
-        'PR_PLAIN': PR_PLAIN,
-        'PR_PUNCTUATION': PR_PUNCTUATION,
-        'PR_SOURCE': PR_SOURCE,
-        'PR_STRING': PR_STRING,
-        'PR_TAG': PR_TAG,
-        'PR_TYPE': PR_TYPE
-      };
+    'combinePrefixPatterns': combinePrefixPatterns,
+    'createSimpleLexer': createSimpleLexer,
+    'registerLangHandler': registerLangHandler,
+    'sourceDecorator': sourceDecorator,
+    'PR_ATTRIB_NAME': PR_ATTRIB_NAME,
+    'PR_ATTRIB_VALUE': PR_ATTRIB_VALUE,
+    'PR_COMMENT': PR_COMMENT,
+    'PR_DECLARATION': PR_DECLARATION,
+    'PR_KEYWORD': PR_KEYWORD,
+    'PR_LITERAL': PR_LITERAL,
+    'PR_NOCODE': PR_NOCODE,
+    'PR_PLAIN': PR_PLAIN,
+    'PR_PUNCTUATION': PR_PUNCTUATION,
+    'PR_SOURCE': PR_SOURCE,
+    'PR_STRING': PR_STRING,
+    'PR_TAG': PR_TAG,
+    'PR_TYPE': PR_TYPE
+  };
 })();

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="nl.chooseyouradventure.mapper.UsermapperTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2023-01-13T13:56:17" hostname="PIRATERYDER" time="0.002">
+  <properties/>
+  <testcase name="giveDta_succesful()" classname="nl.chooseyouradventure.mapper.UsermapperTest" time="0.0"/>
+  <testcase name="giveDta_noEmail()" classname="nl.chooseyouradventure.mapper.UsermapperTest" time="0.0"/>
+  <testcase name="giveEntity_successful()" classname="nl.chooseyouradventure.mapper.UsermapperTest" time="0.001"/>
+  <testcase name="giveEntity_nullGiven()" classname="nl.chooseyouradventure.mapper.UsermapperTest" time="0.0"/>
+  <testcase name="giveEntity_noEmail()" classname="nl.chooseyouradventure.mapper.UsermapperTest" time="0.001"/>
+  <testcase name="giveDta_NullEntered()" classname="nl.chooseyouradventure.mapper.UsermapperTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

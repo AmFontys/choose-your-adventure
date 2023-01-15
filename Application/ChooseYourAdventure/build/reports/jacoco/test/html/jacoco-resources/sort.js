@@ -94,7 +94,7 @@
     window.document.location.hash = hash;
     ids = window.linkelementids;
     for (var i = 0; i < ids.length; i++) {
-        setHashOnAllLinks(document.getElementById(ids[i]), hash);
+      setHashOnAllLinks(document.getElementById(ids[i]), hash);
     }
   }
 
@@ -104,13 +104,13 @@
   function setHashOnAllLinks(tag, hash) {
     links = tag.getElementsByTagName("a");
     for (var i = 0; i < links.length; i++) {
-        var a = links[i];
-        var href = a.href;
-        var hashpos = href.indexOf("#");
-        if (hashpos != -1) {
-            href = href.substring(0, hashpos);
-        }
-        a.href = href + "#" + hash;
+      var a = links[i];
+      var href = a.href;
+      var hashpos = href.indexOf("#");
+      if (hashpos != -1) {
+        href = href.substring(0, hashpos);
+      }
+      a.href = href + "#" + hash;
     }
   }
 

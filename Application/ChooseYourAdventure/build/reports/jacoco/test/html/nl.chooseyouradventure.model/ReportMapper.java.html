@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css" />
+    <link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif" />
+    <title>ReportMapper.java</title>
+    <link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css" />
+    <script type="text/javascript" src="../jacoco-resources/prettify.js"></script>
+</head>
+
+<body onload="window['PR_TAB_WIDTH']=4;prettyPrint()">
+    <div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html"
+                class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ChooseYourAdventure</a>
+        &gt; <a href="index.source.html" class="el_package">nl.chooseyouradventure.model</a> &gt; <span
+            class="el_source">ReportMapper.java</span></div>
+    <h1>ReportMapper.java</h1>
+    <pre class="source lang-java linenums">package nl.chooseyouradventure.model;
+
+import lombok.AllArgsConstructor;
+import nl.chooseyouradventure.model.dta.ReportDta;
+import nl.chooseyouradventure.model.dta.ReportTypeDta;
+import nl.chooseyouradventure.model.dta.StoryDta;
+import nl.chooseyouradventure.model.dta.UserDta;
+import nl.chooseyouradventure.model.entity.Report;
+import nl.chooseyouradventure.model.entity.ReportType;
+import nl.chooseyouradventure.model.entity.Story;
+import nl.chooseyouradventure.model.entity.User;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+@Component
+@AllArgsConstructor
+public class ReportMapper {
+
+    StoryMapper storyMapper;
+    public Report getReportEntity(ReportDta reportDta) {
+<span class="fc bfc" id="L23" title="All 4 branches covered.">        if( reportDta !=null &amp;&amp; reportDta.getReportid()&gt;0) {</span>
+<span class="fc" id="L24">            Story tempStory = StoryMapper.giveEntityStory(reportDta.getStory());</span>
+<span class="fc" id="L25">            ReportType tempReportType = giveEntityReportType(reportDta.getType());</span>
+<span class="fc" id="L26">            User tempUser = Usermapper.giveEntity(reportDta.getUser());</span>
+
+<span class="fc" id="L28">            return Report.builder()</span>
+<span class="fc" id="L29">                    .reportid(reportDta.getReportid())</span>
+<span class="fc" id="L30">                    .reportText(reportDta.getReportText())</span>
+<span class="fc" id="L31">                    .story(tempStory)</span>
+<span class="fc" id="L32">                    .type(tempReportType)</span>
+<span class="fc" id="L33">                    .user(tempUser)</span>
+<span class="fc" id="L34">                    .build();</span>
+        }
+<span class="fc" id="L36">        else return null;</span>
+    }
+
+
+    public List&lt;ReportDta&gt; getReportDta(List&lt;Report&gt; all) {
+<span class="fc" id="L41">        List&lt;ReportDta&gt; arrayList = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if(all !=null) {</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">            for (Report item : all) {</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">                if(item !=null)</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">                if (item.getReportid() &gt; 1) {</span>
+<span class="fc" id="L46">                    StoryDta tempStory = storyMapper.giveDtaStory(item.getStory());</span>
+<span class="fc" id="L47">                    ReportTypeDta tempReportType = giveDtaReportType(item.getType());</span>
+<span class="fc" id="L48">                    UserDta tempUser = Usermapper.giveDta(item.getUser());</span>
+
+<span class="fc" id="L50">                    arrayList.add(</span>
+<span class="fc" id="L51">                            ReportDta.builder()</span>
+<span class="fc" id="L52">                                    .reportid(item.getReportid())</span>
+<span class="fc" id="L53">                                    .reportText(item.getReportText())</span>
+<span class="fc" id="L54">                                    .story(tempStory)</span>
+<span class="fc" id="L55">                                    .type(tempReportType)</span>
+<span class="fc" id="L56">                                    .user(tempUser)</span>
+<span class="fc" id="L57">                                    .build());</span>
+                }
+<span class="fc" id="L59">            }</span>
+        }
+<span class="fc" id="L61">         return arrayList;</span>
+    }
+
+    public ReportDta getReportDta(Optional&lt;Report&gt; byId) {
+<span class="fc bfc" id="L65" title="All 4 branches covered.">        if(byId.isEmpty() || byId.get().getReportid()&lt;1) return null;</span>
+<span class="fc" id="L66">        StoryDta tempStory =storyMapper.giveDtaStory(byId.get().getStory());</span>
+<span class="fc" id="L67">        ReportTypeDta tempReportType = giveDtaReportType(byId.get().getType());</span>
+<span class="fc" id="L68">        UserDta tempUser = Usermapper.giveDta(byId.get().getUser());</span>
+
+<span class="fc" id="L70">        return ReportDta.builder()</span>
+<span class="fc" id="L71">                .reportid(byId.get().getReportid())</span>
+<span class="fc" id="L72">                .reportText(byId.get().getReportText())</span>
+<span class="fc" id="L73">                .story(tempStory)</span>
+<span class="fc" id="L74">                .type(tempReportType)</span>
+<span class="fc" id="L75">                .user(tempUser)</span>
+<span class="fc" id="L76">                .build();</span>
+    }
+
+    public ReportTypeDta giveDtaReportType(ReportType type) {
+<span class="fc bfc" id="L80" title="All 4 branches covered.">        if(type==null||type.getReportTypeId()&lt;1) return null;</span>
+<span class="fc" id="L81">        return ReportTypeDta.builder()</span>
+<span class="fc" id="L82">                .reportTypeId(type.getReportTypeId())</span>
+<span class="fc" id="L83">                .type(type.getType())</span>
+<span class="fc" id="L84">                .build();</span>
+    }
+
+    public List&lt;ReportTypeDta&gt; giveDtaReportType(List&lt;ReportType&gt; types) {
+<span class="fc" id="L88">        List&lt;ReportTypeDta&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        if(types!=null) {</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">            for (ReportType type : types) {</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">                if(type !=null)</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">                if ( type.getReportTypeId() &gt; 0)</span>
+<span class="fc" id="L93">                    list.add(ReportTypeDta.builder()</span>
+<span class="fc" id="L94">                            .reportTypeId(type.getReportTypeId())</span>
+<span class="fc" id="L95">                            .type(type.getType())</span>
+<span class="fc" id="L96">                            .build()</span>
+                    );
+<span class="fc" id="L98">            }</span>
+        }
+<span class="fc" id="L100">        return list;</span>
+    }
+
+    public ReportType giveEntityReportType(ReportTypeDta type) {
+<span class="fc bfc" id="L104" title="All 4 branches covered.">        if(type == null || type.getReportTypeId()&lt;1) {</span>
+<span class="fc" id="L105">            return null;</span>
+        }
+<span class="fc" id="L107">        return ReportType.builder()</span>
+<span class="fc" id="L108">                .reportTypeId(type.getReportTypeId())</span>
+<span class="fc" id="L109">                .type(type.getType())</span>
+<span class="fc" id="L110">                .build();</span>
+    }
+
+}
+</pre>
+    <div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a>
+            0.8.7.202105040129</span></div>
+</body>
+
+</html>
